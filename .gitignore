@@ -1,0 +1,18 @@
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+
+# Written when the pipeline is re-run. The shards are resumable caches of the
+# merged tables, and the merged tables are what is versioned here.
+analysis/results/experiments/*/eval_parts/
+analysis/results/calibration/sweep_parts/
+analysis/results/calibration/nlevels_parts/
+
+# Uncompressed copies of the two largest score tables, over GitHub's 100 MB file
+# limit. The readers accept the versioned .csv.gz next to them.
+analysis/results/experiments/exp4_density_sweep/neuron_stats_tanh_w5_d5.csv
+analysis/results/experiments/exp5_geometry/neuron_stats_tanh_w5_d5.csv
+
+# Smoke runs of the pipeline.
+*_smoke/

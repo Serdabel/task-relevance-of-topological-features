@@ -1,0 +1,17 @@
+# Tested with Python 3.13 on Linux (CPU) at these versions.
+torch>=2.8
+numpy>=2.2
+scipy>=1.15
+pandas>=2.2
+matplotlib>=3.10
+plotly>=6
+tqdm>=4.67
+scikit-image>=0.25
+scikit-learn>=1.6
+
+# Topological data analysis: the homological score (ripser, gudhi) and chromatic TDA.
+ripser>=0.6
+gudhi>=3.11
+chromatic-tda>=1.1
+
+jupyter
