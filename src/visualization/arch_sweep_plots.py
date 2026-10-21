@@ -25,10 +25,10 @@ import matplotlib.pyplot as plt
 #: silent: the tick labels are architectures either way, and only the number
 #: under them changes meaning.
 _AXIS_LABELS = {
-    "n_neurons": "архитектура и число нейронов",
-    "n_capable": "архитектура и число способных нейронов",
-    "width": "архитектура и ширина",
-    "depth": "архитектура и глубина",
+    "n_neurons": "architecture and number of neurons",
+    "n_capable": "architecture and number of capable neurons",
+    "width": "architecture and width",
+    "depth": "architecture and depth",
 }
 
 TARGET_COLOUR = "tab:blue"
@@ -96,7 +96,7 @@ def plot_axis_panels(cells, panels, x="n_neurons", suptitle=None, save_path=None
         incapable = [xi for xi, r in zip(xs, rows) if r.n_capable == 0]
         for i, xi in enumerate(incapable):
             ax.axvspan(xi / 1.18, xi * 1.18, color="0.92", zorder=0,
-                       label="свидетель невозможен (теорема)" if i == 0 else None)
+                       label="witness impossible (theorem)" if i == 0 else None)
 
         if panel.get("band"):
             lo, hi, label = panel["band"]
@@ -128,7 +128,7 @@ def plot_axis_panels(cells, panels, x="n_neurons", suptitle=None, save_path=None
             ax.set_ylim(*panel["ylim"])
         if panel.get("log_y"):
             ax.set_yscale("log")
-        ax.set_xlabel(_AXIS_LABELS.get(px, f"архитектура и {px}"), fontsize=9)
+        ax.set_xlabel(_AXIS_LABELS.get(px, f"architecture and {px}"), fontsize=9)
         ax.set_title(panel["title"], fontsize=10.5)
         ax.grid(alpha=0.25)
         ax.legend(fontsize=8.5, framealpha=0.9)
@@ -159,20 +159,20 @@ def plot_count_vs_neurons(series, fraction=None, title=None, save_path=None):
         xs = block["n_neurons"].to_numpy(float)
         ax.scatter(xs + xs * rng.uniform(-0.02, 0.02, len(xs)), block["count"],
                    s=22, alpha=0.45, color=colour, edgecolors="none", zorder=3,
-                   label=f"{label}: модели ({len(block)})")
+                   label=f"{label}: models ({len(block)})")
         med = block.groupby("n_neurons")["count"].median()
         ax.plot(med.index, med.to_numpy(), "D-", color=colour, ms=7, lw=1.4,
-                zorder=5, label=f"{label}: медианы ячеек")
+                zorder=5, label=f"{label}: cell medians")
 
     if fraction is not None:
         top = max(b["n_neurons"].max() for _, b, _ in series)
         grid = np.linspace(0, top * 1.05, 100)
         ax.plot(grid, fraction * grid, "-", color="0.35", lw=1.6, zorder=2,
-                label=f"постоянная доля {fraction:.3f}·N")
+                label=f"constant fraction {fraction:.3f}·N")
 
-    ax.set_xlabel("нейронов в модели  N = ширина × глубина", fontsize=9.5)
-    ax.set_ylabel("свидетелей на модель", fontsize=9.5)
-    ax.set_title(title or "число свидетелей против размера модели", fontsize=12)
+    ax.set_xlabel("neurons in the model  N = width × depth", fontsize=9.5)
+    ax.set_ylabel("witnesses per model", fontsize=9.5)
+    ax.set_title(title or "number of witnesses against model size", fontsize=12)
     ax.grid(alpha=0.25)
     ax.legend(fontsize=9, framealpha=0.92, loc="upper left")
     fig.tight_layout()
@@ -208,12 +208,12 @@ def plot_witness_count_hist(counts, archs, ncols=4, title=None, save_path=None):
         ax.hist(values, bins=np.arange(-0.5, values.max() + 1.5),
                 color=TARGET_COLOUR, alpha=0.75, edgecolor="white", linewidth=0.6)
         ax.axvline(np.median(values), color="k", lw=2.0,
-                   label=f"медиана {np.median(values):.0f}")
+                   label=f"median {np.median(values):.0f}")
         ax.axvline(1, color=TAU_COLOUR, ls=":", lw=1.6,
-                   label="один выделенный нейрон")
-        ax.set_title(f"{arch}: {total} нейронов, способных {capable}", fontsize=10)
-        ax.set_xlabel("свидетелей в модели", fontsize=8.5)
-        ax.set_ylabel("моделей", fontsize=8.5)
+                   label="one distinguished neuron")
+        ax.set_title(f"{arch}: {total} neurons, {capable} capable", fontsize=10)
+        ax.set_xlabel("witnesses in the model", fontsize=8.5)
+        ax.set_ylabel("models", fontsize=8.5)
         ax.tick_params(labelsize=8)
         ax.grid(alpha=0.25)
         ax.legend(fontsize=8)
@@ -261,13 +261,13 @@ def plot_best_vs_floor(check, cells_width, cells_depth=None, exponents=None,
     x = width_rows["n_neurons"].to_numpy(float)
     ax.fill_between(x, width_rows["median_best_lo"], width_rows["median_best_hi"],
                     color=TARGET_COLOUR, alpha=0.18, linewidth=0, zorder=2)
-    series(width_rows, "median_best", "цель, ряд ширины", TARGET_COLOUR, "o-", True)
-    series(width_rows, "median_best_null", "пол тех же ячеек", FLOOR_COLOUR, "s-")
+    series(width_rows, "median_best", "target, width row", TARGET_COLOUR, "o-", True)
+    series(width_rows, "median_best_null", "floor of the same cells", FLOOR_COLOUR, "s-")
     ax.plot(x, width_rows["predicted_median_best"], "--", color="k", lw=1.6, zorder=3,
-            label="если бы ширина покупала только попытки\n(цель референса × пол ячейки / пол референса)")
+            label="if width bought only attempts\n(reference target × cell floor / reference floor)")
 
     if cells_depth:
-        series(rows_for(cells_depth), "median_best", "цель, ряд глубины",
+        series(rows_for(cells_depth), "median_best", "target, depth row",
                "tab:orange", "^-", True)
 
     if exponents:
@@ -276,9 +276,9 @@ def plot_best_vs_floor(check, cells_width, cells_depth=None, exponents=None,
 
     ax.set_xscale("log")
     ax.set_yscale("log")
-    ax.set_xlabel("нейронов в модели  N", fontsize=9.5)
-    ax.set_ylabel("медиана лучшего нейрона (score / diam A)", fontsize=9.5)
-    ax.set_title(title or "лучший нейрон против пола той же ячейки", fontsize=12)
+    ax.set_xlabel("neurons in the model  N", fontsize=9.5)
+    ax.set_ylabel("median best neuron (score / diam A)", fontsize=9.5)
+    ax.set_title(title or "best neuron against the floor of the same cell", fontsize=12)
     ax.grid(alpha=0.25, which="both")
     ax.legend(fontsize=8.5, framealpha=0.92)
     fig.tight_layout(rect=(0, 0.035, 1, 1) if exponents else None)
@@ -333,11 +333,11 @@ def plot_neuron_fields(items, data_points=None, title=None, ncols=None,
         if component is not None and len(component):
             C = np.asarray(component)
             ax.scatter(C[:, 0], C[:, 1], s=16, color="lime", alpha=0.55,
-                       linewidths=0, zorder=4, label="что сматчил критерий")
+                       linewidths=0, zorder=4, label="what the criterion matched")
 
         A = np.asarray(item["feature_points"])
         ax.scatter(A[:, 0], A[:, 1], s=2.5, color="k", alpha=0.95, linewidths=0,
-                   zorder=5, label="фича A")
+                   zorder=5, label="feature A")
 
         ax.set_title(item["label"], fontsize=9.5)
         ax.set_xlim(x0, x1)
@@ -356,10 +356,10 @@ def plot_neuron_fields(items, data_points=None, title=None, ncols=None,
 # ----------------------------------------------------------------------
 
 LAYER_COORDS = {
-    "layer_id": "номер слоя (0 = первый скрытый)",
-    "from_output": "расстояние до выхода (0 = последний скрытый)",
-    "rel_pos": "относительная позиция  l / (d − 1)",
-    "rel_pos_head": "относительная позиция с головой  l / d",
+    "layer_id": "layer index (0 = first hidden)",
+    "from_output": "distance to the output (0 = last hidden)",
+    "rel_pos": "relative position  l / (d − 1)",
+    "rel_pos_head": "relative position with the head  l / d",
 }
 
 
@@ -402,12 +402,12 @@ def plot_layer_profiles(panels, suptitle=None, save_path=None):
                     ax.plot(fb[x], fb[value], ":", color=colour, lw=1.6, zorder=2)
 
         if floor is not None:
-            ax.plot([], [], ":", color="0.4", lw=1.6, label="пол тех же ячеек")
+            ax.plot([], [], ":", color="0.4", lw=1.6, label="floor of the same cells")
         if x in ("layer_id", "from_output"):
             # Номер слоя целочислен; дробные подписи на этой оси бессмысленны.
             ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
         ax.set_xlabel(LAYER_COORDS.get(x, x), fontsize=9)
-        ax.set_ylabel(panel.get("ylabel", "доля нейронов слоя, прошедших τ"),
+        ax.set_ylabel(panel.get("ylabel", "fraction of the layer's neurons that pass τ"),
                       fontsize=9)
         ax.set_title(panel["title"], fontsize=10.5)
         if panel.get("ylim") is not None:
@@ -451,9 +451,9 @@ def plot_filter_rates(rates, title=None, save_path=None):
     ax.set_yticks(y)
     ax.set_yticklabels(rates["label"], fontsize=9)
     ax.set_xlim(0, 1.18)
-    ax.set_xlabel("доля свидетелей, помеченных фильтром "
-                  "(нет свидетеля глубже и слой не последний)", fontsize=9)
-    ax.set_title(title or "фильтр непрерывности по слоям", fontsize=12)
+    ax.set_xlabel("fraction of witnesses flagged by the filter "
+                  "(no witness deeper and the layer is not the last)", fontsize=9)
+    ax.set_title(title or "continuity filter across layers", fontsize=12)
     ax.grid(axis="x", alpha=0.25)
     fig.tight_layout()
     return _save_or_show(fig, save_path)
@@ -504,12 +504,12 @@ def plot_layer_multiplicity(counts, archs, ncols=4, title=None, save_path=None):
 
         ax.set_xticks(range(0, width + 1, max(1, width // 5)))
         ax.set_yticks(range(len(layers)))
-        ax.set_yticklabels([f"слой {l}" for l in layers], fontsize=8.5)
-        ax.set_xlabel("свидетелей в слое (0 … весь слой)", fontsize=8.5)
-        ax.set_title(f"{arch}: в слое {width} нейронов", fontsize=10)
+        ax.set_yticklabels([f"layer {l}" for l in layers], fontsize=8.5)
+        ax.set_xlabel("witnesses in the layer (0 … whole layer)", fontsize=8.5)
+        ax.set_title(f"{arch}: {width} neurons in a layer", fontsize=10)
         ax.tick_params(labelsize=8)
         fig.colorbar(im, ax=ax, fraction=0.046, pad=0.03,
-                     label="доля моделей" if arch == archs[-1] else None)
+                     label="fraction of models" if arch == archs[-1] else None)
 
     if title:
         fig.suptitle(title, fontsize=12.5)
@@ -517,8 +517,8 @@ def plot_layer_multiplicity(counts, archs, ncols=4, title=None, save_path=None):
     return _save_or_show(fig, save_path)
 
 
-RUNG_LABELS = {"x1": "гейт\n(×1)", "x3": "×3 гейта", "x10": "×10 гейта",
-               "end": "3000 эпох"}
+RUNG_LABELS = {"x1": "gate\n(×1)", "x3": "×3 gate", "x10": "×10 gate",
+               "end": "3000 epochs"}
 
 
 def plot_rung_ladder(panels, rung_order=("x1", "x10", "end"),
@@ -559,7 +559,7 @@ def plot_rung_ladder(panels, rung_order=("x1", "x10", "end"),
             colour = "0.45" if control else colours[ordinary.index(base)]
             label = base.replace("tanh_w", "w").replace("_d", " d")
             if control:
-                label += " — контроль (свидетель невозможен)"
+                label += " — control (witness impossible)"
             if f"{value}_lo" in block:
                 ax.fill_between(block["_x"], block[f"{value}_lo"], block[f"{value}_hi"],
                                 color=colour, alpha=0.15, linewidth=0, zorder=2)
@@ -573,7 +573,7 @@ def plot_rung_ladder(panels, rung_order=("x1", "x10", "end"),
                        lw=1.5, label=lab, zorder=1)
         ax.set_xticks(list(positions.values()))
         ax.set_xticklabels([RUNG_LABELS.get(r, r) for r in rung_order], fontsize=9)
-        ax.set_xlabel("ступень лестницы дообучения", fontsize=9)
+        ax.set_xlabel("rung of the over-training ladder", fontsize=9)
         ax.set_ylabel(panel.get("ylabel", value), fontsize=9)
         ax.set_title(panel["title"], fontsize=10.5)
         if panel.get("ylim") is not None:

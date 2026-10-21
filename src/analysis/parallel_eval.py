@@ -239,8 +239,8 @@ def covered_models(parts_dir: Path, dataset: str, model_name: str) -> set[str]:
         try:
             covered.update(pd.read_csv(part, usecols=["model_path"])["model_path"])
         except Exception as exc:  # a truncated part is not a covered part
-            print(f"  [план] ВНИМАНИЕ: часть {part.name} не читается ({exc}); "
-                  f"её модели будут посчитаны заново")
+            print(f"  [plan] WARNING: part {part.name} is unreadable ({exc}); "
+                  f"its models will be computed again")
     return covered
 
 
@@ -309,7 +309,7 @@ def plan_shards(
     parts_dir = parts_dir_for(spec, parts_dir)
     parts_dir.mkdir(parents=True, exist_ok=True)
     if verbose:
-        print(f"[план] отпечаток конфигурации: {parts_dir.name}  ({parts_dir})")
+        print(f"[plan] configuration fingerprint: {parts_dir.name}  ({parts_dir})")
 
     shards: list[Shard] = []
     done_rows = missing_cells = 0
@@ -322,7 +322,7 @@ def plan_shards(
         if not paths:
             missing_cells += 1
             if verbose:
-                print(f"  [план] {cell.dataset} {cell.tag}: обученных моделей нет, пропуск")
+                print(f"  [plan] {cell.dataset} {cell.tag}: no trained models, skipped")
             continue
 
         n_feat = _n_features(spec, cell.dataset)
@@ -346,14 +346,14 @@ def plan_shards(
     if verbose:
         rows = sum(s.n_rows for s in shards)
         seq_h = rows * SECONDS_PER_ROW / 3600
-        print(f"\n[план] шардов к расчёту: {len(shards)}, строк {rows}")
+        print(f"\n[plan] shards to compute: {len(shards)}, rows {rows}")
         if done_rows:
-            print(f"[план] уже посчитано: {done_rows} строк — эти шарды пропущены")
+            print(f"[plan] already computed: {done_rows} rows — these shards are skipped")
         if missing_cells:
-            print(f"[план] ячеек без моделей: {missing_cells}")
-        print(f"[план] оценка: {seq_h:.2f} ч последовательно")
+            print(f"[plan] cells without models: {missing_cells}")
+        print(f"[plan] estimate: {seq_h:.2f} h sequentially")
         for jobs in (8, 16, 32):
-            print(f"        на {jobs:2d} воркерах ~ {seq_h * 60 / jobs:.0f} мин")
+            print(f"        on {jobs:2d} workers ~ {seq_h * 60 / jobs:.0f} min")
     return shards
 
 
@@ -410,16 +410,16 @@ def run_shards(
             shard, code, err = fut.result()
             if code != 0:
                 failed.append(shard)
-                print(f"  [ОШИБКА] {shard.part_csv.name} (код {code})\n{err}")
+                print(f"  [ERROR] {shard.part_csv.name} (code {code})\n{err}")
             elif verbose:
                 el = time.time() - t0
                 eta = el / done * (total - done)
                 print(f"  [{done:3d}/{total}] {shard.part_csv.name} | "
-                      f"прошло {el/60:5.1f} мин | осталось ~{eta/60:5.1f} мин", flush=True)
+                      f"elapsed {el/60:5.1f} min | remaining ~{eta/60:5.1f} min", flush=True)
 
     if verbose:
-        print(f"\n[шарды] готово за {(time.time()-t0)/60:.1f} мин, "
-              f"успешно {total - len(failed)}/{total}")
+        print(f"\n[shards] done in {(time.time()-t0)/60:.1f} min, "
+              f"succeeded {total - len(failed)}/{total}")
     return failed
 
 
@@ -495,14 +495,14 @@ def merge_parts(
             before = len(df)
             df = df[df["model_path"].isin(wanted[model_name])]
             if len(df) < before and verbose:
-                print(f"[слияние] {model_name}: отброшено {before - len(df)} строк "
-                      f"моделей вне текущего пула")
+                print(f"[merge] {model_name}: dropped {before - len(df)} rows "
+                      f"of models outside the current pool")
 
         keys = [k for k in SORT_KEYS if k in df.columns]
         before = len(df)
         df = df.drop_duplicates(subset=keys) if keys else df.drop_duplicates()
         if len(df) < before and verbose:
-            print(f"[слияние] {model_name}: отброшено {before - len(df)} строк-дубликатов")
+            print(f"[merge] {model_name}: dropped {before - len(df)} duplicate rows")
 
         df = df.sort_values(keys, kind="mergesort").reset_index(drop=True)
 
@@ -534,7 +534,7 @@ def merge_parts(
 
         frames[model_name] = df
         if verbose:
-            print(f"  [слияние] {out.name}: {got} строк из {len(parts)} частей")
+            print(f"  [merge] {out.name}: {got} rows from {len(parts)} parts")
 
     return frames
 

@@ -87,8 +87,8 @@ def train_pool(
 
     if verbose:
         print(before.to_string(index=False))
-        print(f"\n[обучение] ячеек к работе: {len(todo)} из {len(cells)}, "
-              f"воркеров {n_jobs}, потолок попыток на ячейку {max_attempts}")
+        print(f"\n[training] cells to train: {len(todo)} of {len(cells)}, "
+              f"workers {n_jobs}, attempt ceiling per cell {max_attempts}")
 
     if not todo:
         return before
@@ -117,11 +117,11 @@ def train_pool(
             tag = f"{cell.dataset} {cell.tag}"
             if code != 0:
                 failed.append(cell)
-                print(f"  [ОШИБКА] {tag} (код {code})\n{err}")
+                print(f"  [ERROR] {tag} (code {code})\n{err}")
             elif verbose:
                 warn = [ln for ln in out.splitlines() if "ВНИМАНИЕ" in ln]
                 el = time.time() - t0
-                print(f"  [{done:2d}/{len(todo)}] {tag} | прошло {el/60:.1f} мин", flush=True)
+                print(f"  [{done:2d}/{len(todo)}] {tag} | elapsed {el/60:.1f} min", flush=True)
                 for ln in warn:
                     print(f"      {ln}")
 
@@ -130,12 +130,12 @@ def train_pool(
 
     after = ensemble_table(cells, instance_id)
     if verbose:
-        print(f"\n[обучение] готово за {(time.time()-t0)/60:.1f} мин")
+        print(f"\n[training] done in {(time.time()-t0)/60:.1f} min")
         print(after.to_string(index=False))
         short = after[after.missing > 0]
         if len(short):
-            print("\n[обучение] ВНИМАНИЕ, недобор — это результат, а не сбой; "
-                  "отчитывайтесь по фактическому N:")
+            print("\n[training] WARNING: a shortfall is a result, not a failure; "
+                  "report the actual N:")
             print(short.to_string(index=False))
     return after
 
@@ -205,8 +205,8 @@ def train_overtrain_pool(
 
     if verbose:
         print(before.to_string(index=False))
-        print(f"\n[переобучение] ячеек к работе: {len(todo)} из {len(cells)}, "
-              f"воркеров {n_jobs}, бюджет {n_epochs} эпох")
+        print(f"\n[overtraining] cells to train: {len(todo)} of {len(cells)}, "
+              f"workers {n_jobs}, budget {n_epochs} epochs")
 
     if not todo:
         return before
@@ -237,10 +237,10 @@ def train_overtrain_pool(
             tag = f"{cell.dataset} {cell.tag}"
             if code != 0:
                 failed.append(cell)
-                print(f"  [ОШИБКА] {tag} (код {code})\n{err}")
+                print(f"  [ERROR] {tag} (code {code})\n{err}")
             elif verbose:
                 el = time.time() - t0
-                print(f"  [{done:2d}/{len(todo)}] {tag} | прошло {el/60:.1f} мин",
+                print(f"  [{done:2d}/{len(todo)}] {tag} | elapsed {el/60:.1f} min",
                       flush=True)
                 for ln in out.splitlines():
                     if "ступень" in ln or "ВНИМАНИЕ" in ln:
@@ -251,6 +251,6 @@ def train_overtrain_pool(
 
     after = overtrain_table(cells, multiples, instance_id)
     if verbose:
-        print(f"\n[переобучение] готово за {(time.time()-t0)/60:.1f} мин")
+        print(f"\n[overtraining] done in {(time.time()-t0)/60:.1f} min")
         print(after.to_string(index=False))
     return after

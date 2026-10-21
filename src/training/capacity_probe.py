@@ -220,8 +220,8 @@ def frontier_scan(
                 per_seed.append(df)
                 ok = int(df.reached.sum())
                 if verbose:
-                    print(f"{tag:10s} w{w} d{d}: {ok}/{len(df)} дошло, "
-                          f"медиана эпохи {int(df.stopped_epoch.median())}", flush=True)
+                    print(f"{tag:10s} w{w} d{d}: {ok}/{len(df)} reached, "
+                          f"median epoch {int(df.stopped_epoch.median())}", flush=True)
                 if ok >= threshold * len(df):
                     minimal = w
                     break
@@ -229,10 +229,10 @@ def frontier_scan(
                 "dataset": tag, "depth": d, "min_width": minimal,
                 "min_neurons": None if minimal is None else minimal * d,
                 "n_epochs_budget": n_epochs,
-                "note": "" if minimal else f"ни одна ширина <= {max(widths)}",
+                "note": "" if minimal else f"no width <= {max(widths)}",
             })
             if verbose:
-                print(f"  -> минимальная ширина при d={d}: {minimal}\n", flush=True)
+                print(f"  -> minimal width at d={d}: {minimal}\n", flush=True)
 
     fr = pd.DataFrame(frontier)
     # явные nullable-типы: иначе колонка из одних None ловит FutureWarning при concat
