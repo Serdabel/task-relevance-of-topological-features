@@ -1,4 +1,4 @@
-arch,p_superior,интервал,равен 0.5,цель хуже пола
+arch,p_superior,interval,equal to 0.5,target worse than floor
 w5 d1,0.2486,"[0.224, 0.273]",False,True
 w24 d1,0.2522,"[0.225, 0.281]",False,True
 w5 d2,0.0756,"[0.039, 0.119]",False,True

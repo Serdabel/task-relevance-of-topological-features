@@ -1,4 +1,4 @@
-dataset,arch,свидетелей,помечено,доля,с_головой,доля_с_головой
+dataset,arch,witnesses,flagged,fraction,with_head,fraction_with_head
 irrelevant,w20 d5,4,4,1.0,4,1.0
 irrelevant,w40 d5,3,3,1.0,3,1.0
 relevant,w10 d5,1041,0,0.0,0,0.0

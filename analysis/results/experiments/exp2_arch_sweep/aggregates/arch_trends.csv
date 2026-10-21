@@ -1,7 +1,7 @@
 dataset_type,statistic,axis,log_x,cells,slope,slope_lo,slope_hi,includes_zero,label
-simple_irrelevant,p_superior,n_neurons,True,w3d5 w5d5 w10d5 w20d5 w40d5,0.15981294894246376,0.08811129415218041,0.23034388732783134,False,irrelevant · p_superior · ширине
-simple_irrelevant,p_superior,n_neurons,True,w5d2 w5d3 w5d5 w5d8 w5d10,0.06013483158889898,-0.020027403355550536,0.14362587130917662,True,irrelevant · p_superior · глубине
-simple_relevant,witness_fraction,n_neurons,True,w3d5 w5d5 w10d5 w20d5 w40d5,0.02082028236747323,-0.009109184704291623,0.05271316631254569,True,relevant · witness_fraction · ширина
-simple_relevant,witness_fraction_capable,n_neurons,True,w3d5 w5d5 w10d5 w20d5 w40d5,0.02602535295934147,-0.011386480880364784,0.06589145789068214,True,relevant · witness_fraction_capable · ширина
-simple_relevant,witness_fraction,n_neurons,True,w5d2 w5d3 w5d5 w5d8 w5d10,0.7159053685390504,0.6613330296149372,0.764554516426459,False,relevant · witness_fraction · глубина
-simple_relevant,witness_fraction_capable,n_neurons,True,w5d2 w5d3 w5d5 w5d8 w5d10,0.6368121115633787,0.5528338854544815,0.709331305520976,False,relevant · witness_fraction_capable · глубина
+simple_irrelevant,p_superior,n_neurons,True,w3d5 w5d5 w10d5 w20d5 w40d5,0.15981294894246376,0.08811129415218041,0.23034388732783134,False,irrelevant · p_superior · width
+simple_irrelevant,p_superior,n_neurons,True,w5d2 w5d3 w5d5 w5d8 w5d10,0.06013483158889898,-0.020027403355550536,0.14362587130917662,True,irrelevant · p_superior · depth
+simple_relevant,witness_fraction,n_neurons,True,w3d5 w5d5 w10d5 w20d5 w40d5,0.02082028236747323,-0.009109184704291623,0.05271316631254569,True,relevant · witness_fraction · width
+simple_relevant,witness_fraction_capable,n_neurons,True,w3d5 w5d5 w10d5 w20d5 w40d5,0.02602535295934147,-0.011386480880364784,0.06589145789068214,True,relevant · witness_fraction_capable · width
+simple_relevant,witness_fraction,n_neurons,True,w5d2 w5d3 w5d5 w5d8 w5d10,0.7159053685390504,0.6613330296149372,0.764554516426459,False,relevant · witness_fraction · depth
+simple_relevant,witness_fraction_capable,n_neurons,True,w5d2 w5d3 w5d5 w5d8 w5d10,0.6368121115633787,0.5528338854544815,0.709331305520976,False,relevant · witness_fraction_capable · depth
