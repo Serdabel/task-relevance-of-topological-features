@@ -1,0 +1,196 @@
+{
+  "id": "exp2_arch_sweep",
+  "title": "Excessive architecture: witnessing vs width and depth",
+  "plan_ref": "PLAN.md exp. 2; notebooks/experiments/exp2_arch_sweep.ipynb",
+  "datasets": [
+    {
+      "name": "simple_irrelevant",
+      "recipe": "make_simple_dataset",
+      "params": {
+        "relevant": false
+      },
+      "target_feature": "irrelevant",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {}
+    },
+    {
+      "name": "simple_relevant",
+      "recipe": "make_simple_dataset",
+      "params": {
+        "relevant": true
+      },
+      "target_feature": "relevant",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {}
+    }
+  ],
+  "archs": [
+    {
+      "width": 1,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 2,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 3,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 5,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 10,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 20,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 5,
+      "depth": 1,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 5,
+      "depth": 2,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 5,
+      "depth": 3,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 5,
+      "depth": 8,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 24,
+      "depth": 1,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 12,
+      "depth": 2,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 8,
+      "depth": 3,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 3,
+      "depth": 8,
+      "activation": "tanh",
+      "tag": ""
+    }
+  ],
+  "train": {
+    "n_models": 50,
+    "target_test_acc": 1.0,
+    "n_epochs": 3000,
+    "min_epochs": 0,
+    "patience": 5,
+    "batch_size": 64,
+    "lr": 0.001,
+    "optimizer_name": "adam",
+    "weight_decay": 0.0
+  },
+  "eval": {
+    "resolution": 200,
+    "bounds_margin": 0.5,
+    "bounds": [
+      [
+        -8.0,
+        5.5
+      ],
+      [
+        -2.0,
+        5.5
+      ]
+    ],
+    "kinds": [
+      "post"
+    ],
+    "layer_ids": null,
+    "run_structural": true,
+    "run_tubular": false,
+    "extra_criteria": [
+      "homological"
+    ],
+    "structural_kwargs": {
+      "level_eps": "adaptive",
+      "threshold": 0.1,
+      "activation": null
+    },
+    "tubular_kwargs": {},
+    "extra_criteria_kwargs": {
+      "homological": {
+        "backend": "delaunay",
+        "max_sample_points": 7000
+      }
+    },
+    "field_source": "grid",
+    "n_field_points": 20000,
+    "field_seed": 0,
+    "primary_witness_column": null,
+    "null_placements": [
+      {
+        "vector": [
+          3.5,
+          0.0
+        ],
+        "rotation": null,
+        "name": "far_right",
+        "absolute": true,
+        "meta": {}
+      },
+      {
+        "vector": [
+          0.0,
+          3.5
+        ],
+        "rotation": null,
+        "name": "above_target",
+        "absolute": true,
+        "meta": {}
+      }
+    ]
+  },
+  "analyses": [
+    "criterion_diagnostics",
+    "witness_tables",
+    "witness_rate_gap",
+    "rate_vs_width",
+    "rate_gap_by_criterion",
+    "consistency_table"
+  ],
+  "notes": "REDESIGNED 2026-08-27 onto the simple pair; the halfplane version was never run and its dataset is retired. The full plan lives in notebooks/experiments/exp2_arch_sweep.ipynb: step 0 (minimal architectures, measured) then tasks A-F.\nMinimal architectures from step 0: simple_relevant is width 3 at ANY depth (practical minimum w3 d2 = 6 neurons; w3 d1 costs 2439 epochs against 111), simple_irrelevant is w1 d1 = 1 neuron. The reference w5 d5 is therefore 8.3x excess in neurons for one task and 25x for the other -- the same cell means different excess, and that is the content of the axis.\nWidth 1 and 2 exist on simple_irrelevant ONLY: on the relevant task no net of width <= 2 reaches 100 % at any depth (0 successes over 180 seeds), because every level set of a network whose widths are all <= input dimension is unbounded (Johnson, ICLR 2019), so a bounded decision region -- a disk inside a circle -- is unreachable. Those cells are the validity check the instrument must answer with exactly zero witnesses.\nStage 2 and stage 3 run through training/parallel_train.py and analysis/parallel_eval.py: both are resumable and both shard across processes. Sequential cost of the pool is ~6 h of evaluation, ~16 min on 32 workers."
+}

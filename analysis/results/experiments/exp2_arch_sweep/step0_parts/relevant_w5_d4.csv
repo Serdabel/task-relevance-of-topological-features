@@ -1,0 +1,11 @@
+dataset,width,depth,n_neurons,seed,reached,stopped_epoch,best_test_acc,final_test_acc,final_train_acc,seconds
+relevant,5,4,20,0,True,61,1.0,1.0,1.0,0.76
+relevant,5,4,20,1,True,45,1.0,1.0,1.0,0.56
+relevant,5,4,20,2,True,42,1.0,1.0,0.99875,0.53
+relevant,5,4,20,3,True,47,1.0,1.0,1.0,0.71
+relevant,5,4,20,4,True,31,1.0,1.0,1.0,0.41
+relevant,5,4,20,5,True,47,1.0,1.0,1.0,0.59
+relevant,5,4,20,6,True,35,1.0,1.0,1.0,0.44
+relevant,5,4,20,7,True,77,1.0,1.0,1.0,0.95
+relevant,5,4,20,8,True,33,1.0,1.0,1.0,0.42
+relevant,5,4,20,9,True,52,1.0,1.0,1.0,0.65

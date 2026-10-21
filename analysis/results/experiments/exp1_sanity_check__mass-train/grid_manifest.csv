@@ -1,0 +1,3 @@
+cell,dataset_type,model_name,run_tag,width,depth,activation,n_features,n_models,target_acc,n_epochs,min_epochs,patience,batch_size,lr,optimizer,weight_decay,dataset_overrides
+0,simple_irrelevant,tanh_w5_d5_mass-train,mass-train,5,5,tanh,1,50,1.0,300,0,5,64,0.001,adam,0.0,{}
+1,simple_relevant,tanh_w5_d5_mass-train,mass-train,5,5,tanh,1,50,1.0,300,0,5,64,0.001,adam,0.0,{}

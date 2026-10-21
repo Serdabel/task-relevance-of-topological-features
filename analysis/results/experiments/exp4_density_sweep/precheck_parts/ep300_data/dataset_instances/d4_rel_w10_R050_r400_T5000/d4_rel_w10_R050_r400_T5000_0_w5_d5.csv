@@ -1,0 +1,11 @@
+dataset,width,depth,n_neurons,seed,n_epochs_budget,reached,stopped_epoch,first_hit_epoch,best_test_acc,final_test_acc,final_train_acc
+data/dataset_instances/d4_rel_w10_R050_r400_T5000/d4_rel_w10_R050_r400_T5000_0,5,5,25,0,300,True,54,14,1.0,1.0,1.0
+data/dataset_instances/d4_rel_w10_R050_r400_T5000/d4_rel_w10_R050_r400_T5000_0,5,5,25,1,300,True,54,5,1.0,1.0,1.0
+data/dataset_instances/d4_rel_w10_R050_r400_T5000/d4_rel_w10_R050_r400_T5000_0,5,5,25,2,300,True,54,8,1.0,1.0,1.0
+data/dataset_instances/d4_rel_w10_R050_r400_T5000/d4_rel_w10_R050_r400_T5000_0,5,5,25,3,300,True,54,11,1.0,1.0,1.0
+data/dataset_instances/d4_rel_w10_R050_r400_T5000/d4_rel_w10_R050_r400_T5000_0,5,5,25,4,300,True,54,6,1.0,1.0,1.0
+data/dataset_instances/d4_rel_w10_R050_r400_T5000/d4_rel_w10_R050_r400_T5000_0,5,5,25,5,300,True,54,20,1.0,1.0,1.0
+data/dataset_instances/d4_rel_w10_R050_r400_T5000/d4_rel_w10_R050_r400_T5000_0,5,5,25,6,300,True,54,32,1.0,1.0,1.0
+data/dataset_instances/d4_rel_w10_R050_r400_T5000/d4_rel_w10_R050_r400_T5000_0,5,5,25,7,300,True,54,19,1.0,1.0,1.0
+data/dataset_instances/d4_rel_w10_R050_r400_T5000/d4_rel_w10_R050_r400_T5000_0,5,5,25,8,300,True,54,13,1.0,1.0,1.0
+data/dataset_instances/d4_rel_w10_R050_r400_T5000/d4_rel_w10_R050_r400_T5000_0,5,5,25,9,300,True,54,11,1.0,1.0,1.0

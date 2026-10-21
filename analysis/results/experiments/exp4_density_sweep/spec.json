@@ -1,0 +1,752 @@
+{
+  "id": "exp4_density_sweep",
+  "title": "Density against topology: ring width, disk radius, class balance",
+  "plan_ref": "PLAN.md exp. 4; notebooks/experiments/exp4_design_walkthrough.ipynb",
+  "datasets": [
+    {
+      "name": "d4_irr_w00_R100_r025_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 0.0,
+        "disk_radius": 1.0,
+        "n_ring": 200,
+        "n_disk": 800,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_irr_w00_R100_r100_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 0.0,
+        "disk_radius": 1.0,
+        "n_ring": 500,
+        "n_disk": 500,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_irr_w00_R100_r400_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 0.0,
+        "disk_radius": 1.0,
+        "n_ring": 800,
+        "n_disk": 200,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_irr_w05_R100_r025_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 0.5,
+        "disk_radius": 1.0,
+        "n_ring": 200,
+        "n_disk": 800,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_irr_w05_R100_r100_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 0.5,
+        "disk_radius": 1.0,
+        "n_ring": 500,
+        "n_disk": 500,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_irr_w05_R100_r400_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 0.5,
+        "disk_radius": 1.0,
+        "n_ring": 800,
+        "n_disk": 200,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_irr_w10_R100_r025_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 1.0,
+        "disk_radius": 1.0,
+        "n_ring": 200,
+        "n_disk": 800,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_irr_w10_R100_r100_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 1.0,
+        "disk_radius": 1.0,
+        "n_ring": 500,
+        "n_disk": 500,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_irr_w10_R100_r400_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 1.0,
+        "disk_radius": 1.0,
+        "n_ring": 800,
+        "n_disk": 200,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w00_R025_r025_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.0,
+        "disk_radius": 0.25,
+        "n_ring": 200,
+        "n_disk": 800,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w00_R025_r100_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.0,
+        "disk_radius": 0.25,
+        "n_ring": 500,
+        "n_disk": 500,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w00_R025_r400_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.0,
+        "disk_radius": 0.25,
+        "n_ring": 800,
+        "n_disk": 200,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w00_R050_r025_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.0,
+        "disk_radius": 0.5,
+        "n_ring": 200,
+        "n_disk": 800,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w00_R050_r100_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.0,
+        "disk_radius": 0.5,
+        "n_ring": 500,
+        "n_disk": 500,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w00_R050_r400_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.0,
+        "disk_radius": 0.5,
+        "n_ring": 800,
+        "n_disk": 200,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w05_R025_r025_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.5,
+        "disk_radius": 0.25,
+        "n_ring": 200,
+        "n_disk": 800,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w05_R025_r100_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.5,
+        "disk_radius": 0.25,
+        "n_ring": 500,
+        "n_disk": 500,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w05_R025_r400_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.5,
+        "disk_radius": 0.25,
+        "n_ring": 800,
+        "n_disk": 200,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w05_R050_r025_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.5,
+        "disk_radius": 0.5,
+        "n_ring": 200,
+        "n_disk": 800,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w05_R050_r100_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.5,
+        "disk_radius": 0.5,
+        "n_ring": 500,
+        "n_disk": 500,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w05_R050_r400_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.5,
+        "disk_radius": 0.5,
+        "n_ring": 800,
+        "n_disk": 200,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w10_R025_r025_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 1.0,
+        "disk_radius": 0.25,
+        "n_ring": 200,
+        "n_disk": 800,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w10_R025_r100_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 1.0,
+        "disk_radius": 0.25,
+        "n_ring": 500,
+        "n_disk": 500,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w10_R025_r400_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 1.0,
+        "disk_radius": 0.25,
+        "n_ring": 800,
+        "n_disk": 200,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w10_R050_r025_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 1.0,
+        "disk_radius": 0.5,
+        "n_ring": 200,
+        "n_disk": 800,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w10_R050_r100_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 1.0,
+        "disk_radius": 0.5,
+        "n_ring": 500,
+        "n_disk": 500,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w10_R050_r400_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 1.0,
+        "disk_radius": 0.5,
+        "n_ring": 800,
+        "n_disk": 200,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w00_R100_r100_T1000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.0,
+        "disk_radius": 1.0,
+        "n_ring": 500,
+        "n_disk": 500,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_irr_w05_R100_r025_T5000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 0.5,
+        "disk_radius": 1.0,
+        "n_ring": 1000,
+        "n_disk": 4000,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_irr_w05_R100_r100_T5000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 0.5,
+        "disk_radius": 1.0,
+        "n_ring": 2500,
+        "n_disk": 2500,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_irr_w05_R100_r400_T5000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 0.5,
+        "disk_radius": 1.0,
+        "n_ring": 4000,
+        "n_disk": 1000,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_irr_w10_R100_r025_T5000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 1.0,
+        "disk_radius": 1.0,
+        "n_ring": 1000,
+        "n_disk": 4000,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_irr_w10_R100_r100_T5000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 1.0,
+        "disk_radius": 1.0,
+        "n_ring": 2500,
+        "n_disk": 2500,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_irr_w10_R100_r400_T5000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": false,
+        "w": 1.0,
+        "disk_radius": 1.0,
+        "n_ring": 4000,
+        "n_disk": 1000,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w05_R050_r025_T5000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.5,
+        "disk_radius": 0.5,
+        "n_ring": 1000,
+        "n_disk": 4000,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w05_R050_r100_T5000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.5,
+        "disk_radius": 0.5,
+        "n_ring": 2500,
+        "n_disk": 2500,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w05_R050_r400_T5000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 0.5,
+        "disk_radius": 0.5,
+        "n_ring": 4000,
+        "n_disk": 1000,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w10_R050_r025_T5000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 1.0,
+        "disk_radius": 0.5,
+        "n_ring": 1000,
+        "n_disk": 4000,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w10_R050_r100_T5000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 1.0,
+        "disk_radius": 0.5,
+        "n_ring": 2500,
+        "n_disk": 2500,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    },
+    {
+      "name": "d4_rel_w10_R050_r400_T5000",
+      "recipe": "make_density_ring_dataset",
+      "params": {
+        "relevant": true,
+        "w": 1.0,
+        "disk_radius": 0.5,
+        "n_ring": 4000,
+        "n_disk": 1000,
+        "seed": 0
+      },
+      "target_feature": "t_mid",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {},
+      "stratify_split": "component"
+    }
+  ],
+  "archs": [
+    {
+      "width": 5,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": ""
+    }
+  ],
+  "train": {
+    "n_models": 50,
+    "max_attempts": 100,
+    "target_test_acc": 1.0,
+    "n_epochs": 300,
+    "min_epochs": 50,
+    "patience": 5,
+    "batch_size": 64,
+    "lr": 0.001,
+    "optimizer_name": "adam",
+    "weight_decay": 0.0
+  },
+  "eval": {
+    "resolution": 222,
+    "bounds_margin": 0.5,
+    "bounds": [
+      [
+        -7.5,
+        7.5
+      ],
+      [
+        -7.5,
+        7.5
+      ]
+    ],
+    "kinds": [
+      "post"
+    ],
+    "layer_ids": null,
+    "run_structural": true,
+    "run_tubular": false,
+    "extra_criteria": [
+      "homological"
+    ],
+    "structural_kwargs": {
+      "level_eps": "adaptive",
+      "threshold": 0.1,
+      "activation": null
+    },
+    "tubular_kwargs": {},
+    "extra_criteria_kwargs": {
+      "homological": {
+        "backend": "delaunay",
+        "max_sample_points": 7000
+      }
+    },
+    "field_source": "grid",
+    "n_field_points": 20000,
+    "field_seed": 0,
+    "primary_witness_column": null,
+    "null_placements": []
+  },
+  "analyses": [
+    "witness_tables",
+    "witness_rate_gap"
+  ],
+  "notes": "40 cells. Density is varied by GEOMETRY at a constant point count: ring width w in {0, 0.5, 1} and disk radius R in {0.25, 0.5}, so class balance never moves with density and the support never degenerates; w = 0 reproduces experiment 1's circle. Class balance is a THIRD axis, identical in both tasks, which is what makes the task-relevant and task-irrelevant grids comparable.\nFour measurement targets per cell where w > 0 (the ring and the circles at its inner edge, midline and outer edge), one where w = 0 since they coincide there. Each target carries its own A.1 nulls, registered into the instance because they are deterministic rigid motions fully described by the recipe.\nThe clearance between disk and ring is never below 0.5, and pairs of cells inside the grid share a clearance while differing in density -- (w=0.5, R=0.25) with (w=0, R=0.5) at 1.0, and (w=1, R=0.25) with (w=0.5, R=0.5) at 0.75 -- so the clearance is controlled without cells of its own. A matched-density pair falls out the same way: ring density 106.1 at (T=1000, n_ring=500, w=0.5) and at (T=5000, n_ring=1000, w=1.0).\nServer driver: notebooks/experiments/exp4_density_server.ipynb."
+}

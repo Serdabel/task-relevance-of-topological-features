@@ -1,0 +1,107 @@
+{
+  "format_version": 1,
+  "created_at": "2026-09-01T01:59:19.552361+00:00",
+  "git_commit": "c64715bc9e2318c780d3b6a1316a501f36b90b2c",
+  "package_versions": {
+    "torch": "2.0.1+cu118",
+    "numpy": "1.22.4",
+    "scipy": "1.10.1",
+    "pandas": "1.5.3"
+  },
+  "params": {
+    "dataset_types": [
+      "d4_irr_w00_R100_r025_T1000"
+    ],
+    "dataset_root": "/data/dataset_instances",
+    "instance_id": 0,
+    "runs_root": "models/runs",
+    "feature_names": null,
+    "resolution": 222,
+    "bounds_margin": 0.5,
+    "bounds_override": [
+      [
+        -7.5,
+        7.5
+      ],
+      [
+        -7.5,
+        7.5
+      ]
+    ],
+    "layer_ids": null,
+    "coord_ids_by_layer": null,
+    "kinds": [
+      "post"
+    ],
+    "device": "cpu",
+    "structural_kwargs": {
+      "resolution": 100,
+      "n_levels": 101,
+      "levels": null,
+      "activation": null,
+      "level_bounds": null,
+      "level_eps": "adaptive",
+      "connectivity": "full",
+      "min_component_size": 5,
+      "eval_batch_size": 8192,
+      "distance_batch_size": null,
+      "device": "cpu",
+      "threshold": 0.1,
+      "return_best_component_points": false,
+      "diameter_method": "exact",
+      "field": null,
+      "component_radius": null,
+      "adaptive_eps_quantile": null,
+      "adaptive_eps_multiplier": 1.0,
+      "adaptive_eps_local_radius": null,
+      "adaptive_eps_initial_radius_factor": 4.0,
+      "adaptive_eps_max_radius_factor": 20.0,
+      "adaptive_eps_radius_growth": 1.5,
+      "adaptive_eps_min_jumps": 100,
+      "adaptive_eps_edge_mode": "either",
+      "adaptive_eps_min_level_step_factor": 0.5
+    },
+    "tubular_kwargs": {
+      "delta": "auto",
+      "Delta": "auto",
+      "resolution": 100,
+      "delta_factor": 2.0,
+      "Delta_factor": 2.0,
+      "eval_batch_size": 8192,
+      "distance_batch_size": null,
+      "spacing_batch_size": null,
+      "device": "cpu",
+      "return_points": false,
+      "return_metadata": false,
+      "compute_auc": false,
+      "field": null
+    },
+    "run_structural": true,
+    "run_tubular": false,
+    "field_source": "grid",
+    "n_field_points": 20000,
+    "field_seed": 0,
+    "extra_criteria": {
+      "homological": "homological_criterion[{'backend': 'delaunay', 'max_sample_points': 7000}]"
+    },
+    "extra_columns": null,
+    "model_name_filter": "tanh_w5_d5",
+    "max_models_per_dataset": null,
+    "explicit_model_paths": {
+      "d4_irr_w00_R100_r025_T1000": [
+        "models/runs/d4_irr_w00_R100_r025_T1000/d4_irr_w00_R100_r025_T1000_0/d4_irr_w00_R100_r025_T1000_0_tanh_w5_d5_model0",
+        "models/runs/d4_irr_w00_R100_r025_T1000/d4_irr_w00_R100_r025_T1000_0/d4_irr_w00_R100_r025_T1000_0_tanh_w5_d5_model1",
+        "models/runs/d4_irr_w00_R100_r025_T1000/d4_irr_w00_R100_r025_T1000_0/d4_irr_w00_R100_r025_T1000_0_tanh_w5_d5_model10",
+        "models/runs/d4_irr_w00_R100_r025_T1000/d4_irr_w00_R100_r025_T1000_0/d4_irr_w00_R100_r025_T1000_0_tanh_w5_d5_model11",
+        "models/runs/d4_irr_w00_R100_r025_T1000/d4_irr_w00_R100_r025_T1000_0/d4_irr_w00_R100_r025_T1000_0_tanh_w5_d5_model12",
+        "models/runs/d4_irr_w00_R100_r025_T1000/d4_irr_w00_R100_r025_T1000_0/d4_irr_w00_R100_r025_T1000_0_tanh_w5_d5_model13",
+        "models/runs/d4_irr_w00_R100_r025_T1000/d4_irr_w00_R100_r025_T1000_0/d4_irr_w00_R100_r025_T1000_0_tanh_w5_d5_model14",
+        "models/runs/d4_irr_w00_R100_r025_T1000/d4_irr_w00_R100_r025_T1000_0/d4_irr_w00_R100_r025_T1000_0_tanh_w5_d5_model15"
+      ]
+    },
+    "output_csv_path": "analysis/results/experiments/exp4_density_sweep/neuron_stats_tanh_w5_d5.csv",
+    "extra_features": null,
+    "merged_from_parts": 841,
+    "config_fingerprint": "c6c5079d"
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "id": "exp2_extended",
+  "title": "Experiment 2, extra cells: overtraining, w40 d5, w5 d10, other activations",
+  "plan_ref": "PLAN.md exp. 2, tasks D-E; notebooks/experiments/exp2_extended_server.ipynb",
+  "datasets": [
+    {
+      "name": "simple_irrelevant",
+      "recipe": "make_simple_dataset",
+      "params": {
+        "relevant": false
+      },
+      "target_feature": "irrelevant",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {}
+    },
+    {
+      "name": "simple_relevant",
+      "recipe": "make_simple_dataset",
+      "params": {
+        "relevant": true
+      },
+      "target_feature": "relevant",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {}
+    }
+  ],
+  "archs": [
+    {
+      "width": 1,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 2,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 3,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 5,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 10,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 20,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 5,
+      "depth": 1,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 5,
+      "depth": 2,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 5,
+      "depth": 3,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 5,
+      "depth": 8,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 24,
+      "depth": 1,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 12,
+      "depth": 2,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 8,
+      "depth": 3,
+      "activation": "tanh",
+      "tag": ""
+    },
+    {
+      "width": 3,
+      "depth": 8,
+      "activation": "tanh",
+      "tag": ""
+    }
+  ],
+  "train": {
+    "n_models": 50,
+    "target_test_acc": 1.0,
+    "n_epochs": 3000,
+    "min_epochs": 0,
+    "patience": 5,
+    "batch_size": 64,
+    "lr": 0.001,
+    "optimizer_name": "adam",
+    "weight_decay": 0.0
+  },
+  "eval": {
+    "resolution": 200,
+    "bounds_margin": 0.5,
+    "bounds": [
+      [
+        -8.0,
+        5.5
+      ],
+      [
+        -2.0,
+        5.5
+      ]
+    ],
+    "kinds": [
+      "post"
+    ],
+    "layer_ids": null,
+    "run_structural": true,
+    "run_tubular": false,
+    "extra_criteria": [
+      "homological"
+    ],
+    "structural_kwargs": {
+      "level_eps": "adaptive",
+      "threshold": 0.1,
+      "activation": null
+    },
+    "tubular_kwargs": {},
+    "extra_criteria_kwargs": {
+      "homological": {
+        "backend": "delaunay",
+        "max_sample_points": 7000
+      }
+    },
+    "field_source": "grid",
+    "n_field_points": 20000,
+    "field_seed": 0,
+    "primary_witness_column": null,
+    "null_placements": [
+      {
+        "vector": [
+          3.5,
+          0.0
+        ],
+        "rotation": null,
+        "name": "far_right",
+        "absolute": true,
+        "meta": {}
+      },
+      {
+        "vector": [
+          0.0,
+          3.5
+        ],
+        "rotation": null,
+        "name": "above_target",
+        "absolute": true,
+        "meta": {}
+      }
+    ]
+  },
+  "analyses": [
+    "criterion_diagnostics",
+    "witness_tables",
+    "witness_rate_gap",
+    "rate_vs_width",
+    "rate_gap_by_criterion",
+    "consistency_table"
+  ],
+  "notes": "Server-side companion to exp2_arch_sweep. Eval and train specs are inherited unchanged, so every number produced here is directly comparable with the pool's.\nThree blocks, all on both datasets:\n(E) overtraining. Five cells -- w3 d2 (the smallest network that solves the task reliably AND has a neuron capable of witnessing), w3 d5 (narrowest cell studied; also where the head witnesses only 82 % of the time and where the continuity filter's single relevant flag lives), w24 d1 (INSTRUMENT CONTROL: no witness is possible by theorem, so any score movement there is the criterion's baseline moving, not the representation), w5 d5 (reference, doubles as a replication) and w3 d8. The last three are the equal-budget row, so E is the equal-budget comparison unrolled in training time.\nEach run is trained once to 3000 epochs with rungs at 1x, 3x and 10x ITS OWN gate epoch plus the end; gates differ tenfold between cells, so an absolute epoch would land before the gate in one net and far past it in another. The rungs come from ONE run because training sets no seed: a second run is a different trajectory, not a longer one, and only a within-model difference removes seed variance from the duration effect.\n(arch) w40 d5 separates the two readings of task A's width trend (power law against acceleration; four points cannot). w5 d10 tests two predictions stated before it was run: the saturating-profile model of C6 gives a witness fraction of ~0.64-0.66 against 0.578 at d = 8, and the half-rise rule of C4 puts the breakpoint at layer sqrt(10) ~ 3.2.\n(activation) sigmoid at w5 d5 is an INSTRUMENT CONTROL, not a generalisation test: sigmoid(z) = (tanh(z/2)+1)/2 spans the same function class, so a difference in the answer is evidence about the criterion. relu is the real generalisation test -- a different, non-smooth class the project's Morse framing does not cover. Note that the inherited EvalSpec pins activation=None, i.e. 101 levels spaced linearly over the OBSERVED range; for relu fields (non-negative, heavy-tailed) criterions.make_candidate_levels also offers an exponential grid. The linear grid is kept for comparability, as a declared choice rather than a default."
+}

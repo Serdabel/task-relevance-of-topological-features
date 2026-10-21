@@ -1,0 +1,4927 @@
+{
+  "id": "exp5_geometry",
+  "title": "Геометрический эффект: форма пары против формы линии уровня",
+  "plan_ref": "PLAN.md — geometrical effect; дизайн в notebooks/experiments/exp5_geometry_sandbox.ipynb",
+  "datasets": [
+    {
+      "name": "g5_f010_i010_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 1.0,
+        "interior_aspect": 1.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -1.7100000381469727,
+            5.710000038146973
+          ],
+          [
+            -3.7100000381469727,
+            3.7100000381469727
+          ]
+        ],
+        "resolution": 135,
+        "null_placements": [
+          {
+            "vector": [
+              4.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 1.0,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 3.0000007152557373
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f010_i015_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 1.0,
+        "interior_aspect": 1.5
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -1.7100000381469727,
+            5.710000038146973
+          ],
+          [
+            -1.7100000381469727,
+            5.710000038146973
+          ]
+        ],
+        "resolution": 135,
+        "null_placements": [
+          {
+            "vector": [
+              4.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.6666666666666666,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 3.0000007152557373
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f010_i025_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 1.0,
+        "interior_aspect": 2.5
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -1.7100000381469727,
+            5.710000038146973
+          ],
+          [
+            -1.7100000381469727,
+            5.710000038146973
+          ]
+        ],
+        "resolution": 135,
+        "null_placements": [
+          {
+            "vector": [
+              4.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.4,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 3.0000007152557373
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f010_i040_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 1.0,
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -1.7100000381469727,
+            5.710000038146973
+          ],
+          [
+            -1.7100000381469727,
+            5.710000038146973
+          ]
+        ],
+        "resolution": 135,
+        "null_placements": [
+          {
+            "vector": [
+              4.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.25,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 3.0000007152557373
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f015_i010_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 1.5,
+        "interior_aspect": 1.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -6.670000076293945,
+            8.170000076293945
+          ],
+          [
+            -8.170000076293945,
+            6.670000076293945
+          ]
+        ],
+        "resolution": 180,
+        "null_placements": [
+          {
+            "vector": [
+              5.5,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -4.75,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -4.75
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 1.0,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 4.5
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f015_i015_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 1.5,
+        "interior_aspect": 1.5
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -6.670000076293945,
+            8.170000076293945
+          ],
+          [
+            -8.170000076293945,
+            6.670000076293945
+          ]
+        ],
+        "resolution": 180,
+        "null_placements": [
+          {
+            "vector": [
+              5.5,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -4.75,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -4.75
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.6666666666666666,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 4.5
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f015_i025_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 1.5,
+        "interior_aspect": 2.5
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -6.670000076293945,
+            8.170000076293945
+          ],
+          [
+            -8.170000076293945,
+            6.670000076293945
+          ]
+        ],
+        "resolution": 180,
+        "null_placements": [
+          {
+            "vector": [
+              5.5,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -4.75,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -4.75
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.4,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 4.5
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f015_i040_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 1.5,
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -6.670000076293945,
+            8.170000076293945
+          ],
+          [
+            -8.170000076293945,
+            6.670000076293945
+          ]
+        ],
+        "resolution": 180,
+        "null_placements": [
+          {
+            "vector": [
+              5.5,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -4.75,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -4.75
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.25,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 4.5
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f025_i010_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 2.5,
+        "interior_aspect": 1.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -8.350000381469727,
+            12.850000381469727
+          ],
+          [
+            -12.850000381469727,
+            8.350000381469727
+          ]
+        ],
+        "resolution": 154,
+        "null_placements": [
+          {
+            "vector": [
+              8.5,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -6.25,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -6.25
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 1.0,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 7.5
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f025_i015_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 2.5,
+        "interior_aspect": 1.5
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -8.350000381469727,
+            12.850000381469727
+          ],
+          [
+            -12.850000381469727,
+            8.350000381469727
+          ]
+        ],
+        "resolution": 154,
+        "null_placements": [
+          {
+            "vector": [
+              8.5,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -6.25,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -6.25
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.6666666666666666,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 7.5
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f025_i025_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 2.5,
+        "interior_aspect": 2.5
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -8.350000381469727,
+            12.850000381469727
+          ],
+          [
+            -12.850000381469727,
+            8.350000381469727
+          ]
+        ],
+        "resolution": 154,
+        "null_placements": [
+          {
+            "vector": [
+              8.5,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -6.25,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -6.25
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.4,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 7.5
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f025_i040_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 2.5,
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -8.350000381469727,
+            12.850000381469727
+          ],
+          [
+            -12.850000381469727,
+            8.350000381469727
+          ]
+        ],
+        "resolution": 154,
+        "null_placements": [
+          {
+            "vector": [
+              8.5,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -6.25,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -6.25
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.25,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 7.5
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i010_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 4.0,
+        "interior_aspect": 1.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 1.0,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i015_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 4.0,
+        "interior_aspect": 1.5
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.6666666666666666,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i025_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 4.0,
+        "interior_aspect": 2.5
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.4,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.25,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f015_i015T_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 1.5,
+        "interior_aspect": 1.5,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -6.670000076293945,
+            8.170000076293945
+          ],
+          [
+            -8.170000076293945,
+            6.670000076293945
+          ]
+        ],
+        "resolution": 180,
+        "null_placements": [
+          {
+            "vector": [
+              5.5,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -4.75,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -4.75
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.6666666666666666,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 4.5
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f015_i025T_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 1.5,
+        "interior_aspect": 2.5,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -6.670000076293945,
+            8.170000076293945
+          ],
+          [
+            -8.170000076293945,
+            6.670000076293945
+          ]
+        ],
+        "resolution": 180,
+        "null_placements": [
+          {
+            "vector": [
+              5.5,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -4.75,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -4.75
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.4,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 4.5
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f015_i040T_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 1.5,
+        "interior_aspect": 4.0,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -6.670000076293945,
+            8.170000076293945
+          ],
+          [
+            -8.170000076293945,
+            6.670000076293945
+          ]
+        ],
+        "resolution": 180,
+        "null_placements": [
+          {
+            "vector": [
+              5.5,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -4.75,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -4.75
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.25,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 4.5
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f025_i015T_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 2.5,
+        "interior_aspect": 1.5,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -8.350000381469727,
+            12.850000381469727
+          ],
+          [
+            -12.850000381469727,
+            8.350000381469727
+          ]
+        ],
+        "resolution": 154,
+        "null_placements": [
+          {
+            "vector": [
+              8.5,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -6.25,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -6.25
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.6666666666666666,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 7.5
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f025_i025T_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 2.5,
+        "interior_aspect": 2.5,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -8.350000381469727,
+            12.850000381469727
+          ],
+          [
+            -12.850000381469727,
+            8.350000381469727
+          ]
+        ],
+        "resolution": 154,
+        "null_placements": [
+          {
+            "vector": [
+              8.5,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -6.25,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -6.25
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.4,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 7.5
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f025_i040T_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 2.5,
+        "interior_aspect": 4.0,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -8.350000381469727,
+            12.850000381469727
+          ],
+          [
+            -12.850000381469727,
+            8.350000381469727
+          ]
+        ],
+        "resolution": 154,
+        "null_placements": [
+          {
+            "vector": [
+              8.5,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -6.25,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -6.25
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.25,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 7.5
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i015T_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 4.0,
+        "interior_aspect": 1.5,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.6666666666666666,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i025T_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 4.0,
+        "interior_aspect": 2.5,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.4,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040T_s100_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.25,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i010_s100_o+0000+0000_b0200",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "n_feature": 800,
+        "n_interior": 200,
+        "feature_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.335899353027344,
+            11.40410041809082
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0682
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 1.0,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i010_s100_o+0000+0000_b0800",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "n_feature": 200,
+        "n_interior": 800,
+        "feature_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.346649169921875,
+            11.393349647521973
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0467
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 1.0,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f010_i040_s100_o+0000+0000_b0200",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "n_feature": 800,
+        "n_interior": 200,
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -1.7100000381469727,
+            5.710000038146973
+          ],
+          [
+            -1.7100000381469727,
+            5.710000038146973
+          ]
+        ],
+        "resolution": 135,
+        "null_placements": [
+          {
+            "vector": [
+              4.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.25,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 3.0000007152557373
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f010_i040_s100_o+0000+0000_b0800",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "n_feature": 200,
+        "n_interior": 800,
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -1.7100000381469727,
+            5.710000038146973
+          ],
+          [
+            -1.7100000381469727,
+            5.710000038146973
+          ]
+        ],
+        "resolution": 135,
+        "null_placements": [
+          {
+            "vector": [
+              4.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.25,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 3.0000007152557373
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040_s100_o+0000+0000_b0200",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "n_feature": 800,
+        "n_interior": 200,
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.335899353027344,
+            11.40410041809082
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0682
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.25,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040_s100_o+0000+0000_b0800",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "n_feature": 200,
+        "n_interior": 800,
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.346649169921875,
+            11.393349647521973
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0467
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.25,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040T_s100_o+0000+0000_b0200",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "n_feature": 800,
+        "n_interior": 200,
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.335899353027344,
+            11.40410041809082
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0682
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.25,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040T_s100_o+0000+0000_b0800",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "n_feature": 200,
+        "n_interior": 800,
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.346649169921875,
+            11.393349647521973
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0467
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 1.0,
+              "b": 0.25,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f010_i010_s050_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.0,
+          0.0
+        ]
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -1.7100000381469727,
+            5.710000038146973
+          ],
+          [
+            -3.7100000381469727,
+            3.7100000381469727
+          ]
+        ],
+        "resolution": 135,
+        "null_placements": [
+          {
+            "vector": [
+              4.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.5,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 3.0000007152557373
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f010_i010_s050_o+0038+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.375,
+          0.0
+        ]
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -5.829999923706055,
+            5.829999923706055
+          ],
+          [
+            -3.8299999237060547,
+            7.829999923706055
+          ]
+        ],
+        "resolution": 212,
+        "null_placements": [
+          {
+            "vector": [
+              4.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -4.0,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.5,
+              "rotation": 0.0,
+              "offset": [
+                0.375,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 3.0000007152557373
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f010_i010_s050_o+0075+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.75,
+          0.0
+        ]
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -5.829999923706055,
+            5.829999923706055
+          ],
+          [
+            -3.8299999237060547,
+            7.829999923706055
+          ]
+        ],
+        "resolution": 212,
+        "null_placements": [
+          {
+            "vector": [
+              4.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -4.0,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.5,
+              "rotation": 0.0,
+              "offset": [
+                0.75,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 3.0000007152557373
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i010_s050_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.0,
+          0.0
+        ],
+        "feature_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.5,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i010_s050_o+0252+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          2.5155816078186035,
+          0.0
+        ],
+        "feature_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.5,
+              "rotation": 0.0,
+              "offset": [
+                2.5155816078186035,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i010_s050_o+0503+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          5.031163215637207,
+          0.0
+        ],
+        "feature_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.5,
+              "rotation": 0.0,
+              "offset": [
+                5.031163215637207,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i010_s050_o+0000+0038_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.0,
+          0.375
+        ],
+        "feature_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.5,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.375
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i010_s050_o+0000+0075_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.0,
+          0.75
+        ],
+        "feature_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.5,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.75
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f010_i040_s050_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.0,
+          0.0
+        ],
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -1.7100000381469727,
+            5.710000038146973
+          ],
+          [
+            -1.7100000381469727,
+            5.710000038146973
+          ]
+        ],
+        "resolution": 135,
+        "null_placements": [
+          {
+            "vector": [
+              4.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 3.0000007152557373
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f010_i040_s050_o+0038+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.375,
+          0.0
+        ],
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -5.829999923706055,
+            5.829999923706055
+          ],
+          [
+            -3.8299999237060547,
+            7.829999923706055
+          ]
+        ],
+        "resolution": 212,
+        "null_placements": [
+          {
+            "vector": [
+              4.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -4.0,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 0.0,
+              "offset": [
+                0.375,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 3.0000007152557373
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f010_i040_s050_o+0075+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.75,
+          0.0
+        ],
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -5.829999923706055,
+            5.829999923706055
+          ],
+          [
+            -3.8299999237060547,
+            7.829999923706055
+          ]
+        ],
+        "resolution": 212,
+        "null_placements": [
+          {
+            "vector": [
+              4.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -4.0,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 0.0,
+              "offset": [
+                0.75,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 3.0000007152557373
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f010_i040_s050_o+0000+0055_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.0,
+          0.5546332597732544
+        ],
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -5.829999923706055,
+            5.829999923706055
+          ],
+          [
+            -3.8299999237060547,
+            7.829999923706055
+          ]
+        ],
+        "resolution": 212,
+        "null_placements": [
+          {
+            "vector": [
+              4.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -4.0,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.5546332597732544
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 3.0000007152557373
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f010_i040_s050_o+0000+0111_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.0,
+          1.1092665195465088
+        ],
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -5.829999923706055,
+            5.829999923706055
+          ],
+          [
+            -3.8299999237060547,
+            7.829999923706055
+          ]
+        ],
+        "resolution": 212,
+        "null_placements": [
+          {
+            "vector": [
+              4.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              4.0
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -4.0,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                1.1092665195465088
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 3.0000007152557373
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040_s050_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.0,
+          0.0
+        ],
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040_s050_o+0263+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          2.625001072883606,
+          0.0
+        ],
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 0.0,
+              "offset": [
+                2.625001072883606,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040_s050_o+0525+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          5.250002145767212,
+          0.0
+        ],
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 0.0,
+              "offset": [
+                5.250002145767212,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040_s050_o+0000+0056_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.0,
+          0.5625
+        ],
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                0.5625
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040_s050_o+0000+0112_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.0,
+          1.125
+        ],
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 0.0,
+              "offset": [
+                0.0,
+                1.125
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040T_s050_o+0000+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.0,
+          0.0
+        ],
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                0.0,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040T_s050_o+0257+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          2.5682008266448975,
+          0.0
+        ],
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                2.5682008266448975,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040T_s050_o+0514+0000_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          5.136401653289795,
+          0.0
+        ],
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                5.136401653289795,
+                0.0
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040T_s050_o+0000+0038_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.0,
+          0.375
+        ],
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                0.0,
+                0.375
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    },
+    {
+      "name": "g5_f040_i040T_s050_o+0000+0075_b0500",
+      "recipe": "make_geometry_pair_dataset",
+      "params": {
+        "interior_scale": 0.5,
+        "interior_offset": [
+          0.0,
+          0.75
+        ],
+        "feature_aspect": 4.0,
+        "interior_aspect": 4.0,
+        "interior_rotation": 1.5707963267948966
+      },
+      "target_feature": "ring",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {
+        "bounds": [
+          [
+            -10.869999885559082,
+            19.869998931884766
+          ],
+          [
+            -19.337200164794922,
+            11.402799606323242
+          ]
+        ],
+        "resolution": 140,
+        "null_placements": [
+          {
+            "vector": [
+              13.0,
+              0.0
+            ],
+            "rotation": null,
+            "name": "справа",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              5.0656
+            ],
+            "rotation": null,
+            "name": "сверху",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              -8.5,
+              0.0
+            ],
+            "rotation": 90,
+            "name": "слева_поперёк",
+            "absolute": true,
+            "meta": {}
+          },
+          {
+            "vector": [
+              0.0,
+              -8.5
+            ],
+            "rotation": 90,
+            "name": "снизу_поперёк",
+            "absolute": true,
+            "meta": {}
+          }
+        ],
+        "extra_criteria_kwargs": {
+          "homological": {
+            "backend": "delaunay",
+            "max_sample_points": 7000
+          },
+          "harmonic": {
+            "interior": {
+              "a": 0.5,
+              "b": 0.125,
+              "rotation": 1.5707963267948966,
+              "offset": [
+                0.0,
+                0.75
+              ]
+            },
+            "target_center": [
+              0.0,
+              0.0
+            ],
+            "target_diameter": 12.0
+          }
+        }
+      },
+      "stratify_split": null
+    }
+  ],
+  "archs": [
+    {
+      "width": 5,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": ""
+    }
+  ],
+  "train": {
+    "n_models": 50,
+    "max_attempts": 100,
+    "target_test_acc": 1.0,
+    "n_epochs": 3000,
+    "min_epochs": 50,
+    "patience": 5,
+    "batch_size": 64,
+    "lr": 0.001,
+    "optimizer_name": "adam",
+    "weight_decay": 0.0
+  },
+  "eval": {
+    "resolution": 200,
+    "bounds_margin": 0.5,
+    "bounds": null,
+    "kinds": [
+      "post"
+    ],
+    "layer_ids": null,
+    "run_structural": true,
+    "run_tubular": false,
+    "extra_criteria": [
+      "homological",
+      "harmonic"
+    ],
+    "structural_kwargs": {
+      "level_eps": "adaptive",
+      "threshold": 0.1,
+      "activation": null
+    },
+    "tubular_kwargs": {},
+    "extra_criteria_kwargs": {},
+    "field_source": "grid",
+    "n_field_points": 20000,
+    "field_seed": 0,
+    "primary_witness_column": null,
+    "null_placements": []
+  },
+  "analyses": [],
+  "notes": "56 ячеек = A 16 + A⊥ 9 + C 8 + D 23; 200 нулей; отклик — harmonic"
+}

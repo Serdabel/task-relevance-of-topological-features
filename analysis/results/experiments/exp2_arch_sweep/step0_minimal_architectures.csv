@@ -1,0 +1,13 @@
+dataset,depth,min_width,n_neurons,note
+relevant,1,,,ни одна ширина <= 8
+relevant,2,3.0,6.0,
+relevant,3,3.0,9.0,
+relevant,4,3.0,12.0,
+relevant,5,4.0,20.0,
+relevant,6,4.0,24.0,
+irrelevant,1,1.0,1.0,
+irrelevant,2,1.0,2.0,
+irrelevant,3,1.0,3.0,
+irrelevant,4,1.0,4.0,
+irrelevant,5,1.0,5.0,
+irrelevant,6,1.0,6.0,

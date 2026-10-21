@@ -1,0 +1,134 @@
+{
+  "id": "exp1_sanity_check__mass-train",
+  "title": "Calibration / sanity check",
+  "plan_ref": "Jupyter notebook sanity check",
+  "datasets": [
+    {
+      "name": "simple_irrelevant",
+      "recipe": "make_simple_dataset",
+      "params": {
+        "relevant": false
+      },
+      "target_feature": "irrelevant",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {}
+    },
+    {
+      "name": "simple_relevant",
+      "recipe": "make_simple_dataset",
+      "params": {
+        "relevant": true
+      },
+      "target_feature": "relevant",
+      "n_null_features": 0,
+      "null_kind": "shuffled",
+      "eval_overrides": {}
+    }
+  ],
+  "archs": [
+    {
+      "width": 5,
+      "depth": 5,
+      "activation": "tanh",
+      "tag": "mass-train"
+    }
+  ],
+  "train": {
+    "n_models": 50,
+    "target_test_acc": 1.0,
+    "n_epochs": 300,
+    "min_epochs": 50,
+    "patience": 5,
+    "batch_size": 64,
+    "lr": 0.001,
+    "optimizer_name": "adam",
+    "weight_decay": 0.0
+  },
+  "eval": {
+    "resolution": 200,
+    "bounds_margin": 0.5,
+    "kinds": [
+      "post"
+    ],
+    "layer_ids": null,
+    "run_structural": true,
+    "run_tubular": false,
+    "extra_criteria": [
+      "homological"
+    ],
+    "structural_kwargs": {
+      "level_eps": "adaptive",
+      "threshold": 0.1
+    },
+    "tubular_kwargs": {},
+    "extra_criteria_kwargs": {
+      "homological": {
+        "backend": "delaunay"
+      }
+    },
+    "field_source": "grid",
+    "n_field_points": 20000,
+    "field_seed": 0,
+    "primary_witness_column": null,
+    "null_placements": [
+      {
+        "vector": [
+          -2.5,
+          0.0
+        ],
+        "rotation": null,
+        "name": "on_blue_disk",
+        "absolute": true,
+        "meta": {}
+      },
+      {
+        "vector": [
+          -1.0,
+          0.0
+        ],
+        "rotation": null,
+        "name": "disk_edge",
+        "absolute": true,
+        "meta": {}
+      },
+      {
+        "vector": [
+          0.0,
+          0.0
+        ],
+        "rotation": null,
+        "name": "corridor",
+        "absolute": true,
+        "meta": {}
+      },
+      {
+        "vector": [
+          2.5,
+          1.6
+        ],
+        "rotation": null,
+        "name": "above_target",
+        "absolute": true,
+        "meta": {}
+      },
+      {
+        "vector": [
+          -7.0,
+          0.0
+        ],
+        "rotation": null,
+        "name": "far_outside",
+        "absolute": true,
+        "meta": {}
+      }
+    ]
+  },
+  "analyses": [
+    "criterion_diagnostics",
+    "witness_tables",
+    "witness_rate_gap",
+    "grid_witness_rates"
+  ],
+  "notes": "[grid mass_train: 2 cells] "
+}
