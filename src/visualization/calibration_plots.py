@@ -575,26 +575,26 @@ def plot_populations(scores, criterion, populations, planted=None, threshold=Non
     for label, block, colour in blocks:
         v = _finite(block["score"])
         ax.hist(v, bins=edges, weights=np.full(len(v), 1.0 / max(len(block), 1)),
-                color=colour, alpha=0.45, label=f"{label} — все нейроны ({len(block)})")
+                color=colour, alpha=0.45, label=f"{label} — all neurons ({len(block)})")
         best = _unit_bests(block, lower_is_better)
         if len(best):
             ax.axvline(float(np.median(best)), color=colour, lw=2.4, alpha=0.95,
-                       label=f"{label} — медиана лучшего на юнит ({len(best)} юнитов)")
+                       label=f"{label} — median best-per-unit ({len(best)} units)")
         if len(v) < len(block):
-            ax.text(0.99, 0.05, f"{label}: скор вернулся у {len(v) / len(block):.0%}",
+            ax.text(0.99, 0.05, f"{label}: score returned for {len(v) / len(block):.0%}",
                     transform=ax.transAxes, ha="right", fontsize=8, color="0.3")
 
     if mark is not None:
-        ax.axvline(mark, color="k", ls="--", lw=1.3, label="подсаженный нейрон")
+        ax.axvline(mark, color="k", ls="--", lw=1.3, label="planted neuron")
     if threshold is not None:
         ax.axvline(threshold, color="crimson", ls=":", lw=1.5, label=f"tau = {threshold}")
 
     xlabel, direction = _direction_texts(lower_is_better)
     ax.set_xlabel(xlabel, fontsize=9)
-    ax.set_ylabel("доля нейронов популяции")
+    ax.set_ylabel("fraction of the population's neurons")
     ax.grid(alpha=0.25)
     ax.legend(fontsize=8.5, framealpha=0.9)
-    ax.set_title(title or f"{criterion}: распределения при замороженной конфигурации",
+    ax.set_title(title or f"{criterion}: distributions at the frozen configuration",
                  fontsize=12)
     fig.text(0.5, 0.965, caption or direction, ha="center", va="top",
              fontsize=8.5, color="0.35")
@@ -642,7 +642,7 @@ def plot_unit_strips(scores, criterion, groups, threshold=None, lower_is_better=
                    label=f"tau = {threshold}")
     if planted is not None:
         ax.axvline(planted, color="k", ls="--", lw=1.3, zorder=2,
-                   label="подсаженный нейрон")
+                   label="planted neuron")
 
     ax.set_yticks(range(len(rows)))
     ax.set_yticklabels([label for label, _, _ in rows][::-1], fontsize=9.5)
@@ -652,7 +652,7 @@ def plot_unit_strips(scores, criterion, groups, threshold=None, lower_is_better=
     ax.grid(axis="x", alpha=0.25)
     if threshold is not None or planted is not None:
         ax.legend(fontsize=8.5, loc="upper right", framealpha=0.92)
-    ax.set_title(title or f"{criterion}: каждая точка — одна пара (модель, фича)",
+    ax.set_title(title or f"{criterion}: each point is one (model, feature) pair",
                  fontsize=12)
     fig.text(0.5, 0.985, caption or direction, ha="center", va="top",
              fontsize=8.5, color="0.35")
@@ -680,10 +680,10 @@ def plot_detection_curves(curves, threshold=None, criterion="structural",
     for ax, name in zip(axs[0], order):
         block = sub[sub["axis"] == name].sort_values("value")
         ax.plot(block["value"], block["score"], "o-", color="tab:blue",
-                label="измеренный скор")
+                label="measured score")
         if block["ideal_score"].notna().any():
             ax.plot(block["value"], block["ideal_score"], "k--", alpha=0.6,
-                    label="истинная геометрия")
+                    label="true geometry")
         if threshold is not None:
             ax.axhline(threshold, color="crimson", ls=":", lw=1.4,
                        label=f"tau = {threshold}")
@@ -695,9 +695,9 @@ def plot_detection_curves(curves, threshold=None, criterion="structural",
         ax.set_xlabel(f"{name}\n({DEGRADATION_AXES[name][1]})", fontsize=9)
         ax.set_title(name, fontsize=10)
         ax.grid(alpha=0.3)
-    axs[0][0].set_ylabel("score / diam(A)   (ниже = ближе к A)")
+    axs[0][0].set_ylabel("score / diam(A)   (lower = closer to A)")
     axs[0][0].legend(fontsize=8.5)
-    fig.suptitle(title or f"{criterion}: где детектор перестаёт срабатывать",
+    fig.suptitle(title or f"{criterion}: where the detector stops firing",
                  fontsize=12)
     fig.tight_layout(rect=(0, 0, 1, 0.94))
     return _save_or_show(fig, save_path)
