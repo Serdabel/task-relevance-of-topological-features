@@ -88,8 +88,8 @@ configuration.
   `exp4`, `exp5`) keep the numbering of the research log, because the stored
   results and specifications are addressed by them.
 - The notebooks are stored executed, with all outputs and figures. The
-  notebooks of Experiments 1 and 2 are in English; the commentary of
-  Experiments 3 and 4 is still in Russian, and English versions are in
+  notebooks of Experiments 1–3 are in English; the commentary of
+  Experiment 4 is still in Russian, and an English version is in
   preparation.
 
 ## Repository layout
