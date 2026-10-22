@@ -137,7 +137,7 @@ def plot_targets_and_nulls(cell, loader, size: float = 6.5, title=None):
         else:
             ax.scatter(*pts.T, s=1.4, c=CN, linewidths=0)
     ax.scatter([], [], s=12, c=CT, label="targets (what the level set is compared with)")
-    ax.scatter([], [], s=12, c=CN, label="A.1 nulls — the same targets, moved to empty places")
+    ax.scatter([], [], s=12, c=CN, label="nulls — the same targets, moved to empty places")
 
     ax.set_aspect("equal")
     ax.grid(alpha=.2)
