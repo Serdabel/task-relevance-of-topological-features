@@ -295,11 +295,11 @@ def axis_table(cells: pd.DataFrame, axis: str, family: str = "t_mid",
     for key, value in fixed.items():
         sel = sel[sel[key] == value]
     return (sel.groupby(axis)
-               .agg(ячеек=("cell", "nunique"),
-                    порог=("threshold", "median"),
-                    доля=("rate", "mean"),
-                    доля_lo=("rate_lo", "mean"), доля_hi=("rate_hi", "mean"),
-                    медиана=("med_target", "median"),
+               .agg(cells=("cell", "nunique"),
+                    threshold=("threshold", "median"),
+                    rate=("rate", "mean"),
+                    rate_lo=("rate_lo", "mean"), rate_hi=("rate_hi", "mean"),
+                    median=("med_target", "median"),
                     p_superior=("p_superior", "median"),
                     margin=("med_margin", "median"))
                .reset_index())
@@ -309,13 +309,13 @@ def task_contrast(cells: pd.DataFrame, family: str = "t_mid") -> pd.DataFrame:
     """The headline comparison: the same target under both tasks."""
     sel = cells[cells["family"] == family]
     return (sel.groupby("task")
-               .agg(ячеек=("cell", "nunique"),
-                    доля=("rate", "median"), доля_min=("rate", "min"),
-                    доля_max=("rate", "max"),
-                    доля_tau=("rate_tau", "median"),
-                    медиана=("med_target", "median"),
-                    лучший=("min_target", "min"),
-                    пол=("med_null", "median"),
+               .agg(cells=("cell", "nunique"),
+                    rate=("rate", "median"), rate_min=("rate", "min"),
+                    rate_max=("rate", "max"),
+                    rate_tau=("rate_tau", "median"),
+                    median=("med_target", "median"),
+                    best=("min_target", "min"),
+                    floor=("med_null", "median"),
                     p_superior=("p_superior", "median"),
                     margin=("med_margin", "median"))
                .reset_index())
@@ -342,10 +342,10 @@ def matched_clearance_pairs(cells: pd.DataFrame, family: str = "t_mid",
         if block["cell"].nunique() < 2:
             continue
         for _, row in block.iterrows():
-            out.append({"зазор": gap, "rho": rho, "w": row["w"], "R": row["R"],
-                        "плотн. кольца": row["ring_density"],
-                        "плотн. диска": row["disk_density"],
-                        "медиана": row["med_target"], "доля": row["rate"]})
+            out.append({"gap": gap, "rho": rho, "w": row["w"], "R": row["R"],
+                        "ring density": row["ring_density"],
+                        "disk density": row["disk_density"],
+                        "median": row["med_target"], "rate": row["rate"]})
     return pd.DataFrame(out)
 
 
@@ -366,10 +366,10 @@ def matched_density_pairs(cells: pd.DataFrame, family: str = "t_mid",
         if block["cell"].nunique() < 2 or block["T"].nunique() < 2:
             continue
         for _, row in block.iterrows():
-            out.append({"плотн. кольца": dens, "T": row["T"], "rho": row["rho"],
+            out.append({"ring density": dens, "T": row["T"], "rho": row["rho"],
                         "w": row["w"], "R": row["R"], "n_ring": row["n_ring"],
-                        "плотн. диска": row["disk_density"],
-                        "медиана": row["med_target"], "доля": row["rate"]})
+                        "disk density": row["disk_density"],
+                        "median": row["med_target"], "rate": row["rate"]})
     return pd.DataFrame(out)
 
 
@@ -398,9 +398,9 @@ def theorem_control(df: pd.DataFrame, threshold=TAU) -> pd.DataFrame:
     target = df[df["feature_role"] == "target"].assign(
         _hit=lambda t: t["score"] <= _bar(t, threshold))
     return (target.groupby("layer_id")
-                  .agg(нейронов=("score", "size"),
-                       срабатываний=("_hit", "sum"),
-                       мин_скор=("score", "min"))
+                  .agg(neurons=("score", "size"),
+                       hits=("_hit", "sum"),
+                       min_score=("score", "min"))
                   .reset_index())
 
 
@@ -410,9 +410,9 @@ def layer_profile(df: pd.DataFrame, task: str = "relevant",
     sel = df[(df["feature_role"] == "target") & (df["task"] == task)]
     sel = sel.assign(_hit=lambda t: t["score"] <= _bar(t, threshold))
     return (sel.groupby("layer_id")
-               .agg(нейронов=("score", "size"),
-                    доля_срабатываний=("_hit", "mean"),
-                    медиана=("score", "median"))
+               .agg(neurons=("score", "size"),
+                    hit_rate=("_hit", "mean"),
+                    median=("score", "median"))
                .reset_index())
 
 
@@ -511,10 +511,10 @@ def trainability_table(cells: pd.DataFrame, attempts: int = 50) -> pd.DataFrame:
     seen = cells[["cell", "task", "w", "R", "rho", "T", "clearance",
                   "ring_density", "disk_density"]].drop_duplicates("cell")
     seen = seen.copy()
-    seen["успехов"] = [FIRST_PASS_SUCCESSES.get(c, attempts) for c in seen["cell"]]
-    seen["попыток"] = attempts
-    seen["доля успеха"] = seen["успехов"] / attempts
-    return seen.sort_values("доля успеха")
+    seen["successes"] = [FIRST_PASS_SUCCESSES.get(c, attempts) for c in seen["cell"]]
+    seen["attempts"] = attempts
+    seen["success rate"] = seen["successes"] / attempts
+    return seen.sort_values("success rate")
 
 
 # ----------------------------------------------------------------------
@@ -569,20 +569,20 @@ def spacing_table(cell_names, instance_id: int = 0) -> pd.DataFrame:
     for name in cell_names:
         X, y, _, _ = dataset_points(name, instance_id)
         cell = cell_of(name)
-        for label, mask in (("кольцо", y == 0), ("диск", y == 1)):
+        for label, mask in (("ring", y == 0), ("disk", y == 1)):
             pts = X[mask].numpy()
             if len(pts) < 2:
                 continue
             dist, _ = cKDTree(pts).query(pts, k=2)
-            area = (3.0 * math.pi * cell["w"] if label == "кольцо"
+            area = (3.0 * math.pi * cell["w"] if label == "ring"
                     else math.pi * cell["R"] ** 2)
             rows.append({
-                "cell": name, "объект": label, **cell,
+                "cell": name, "object": label, **cell,
                 "n_ring": n_ring_of(cell["rho"], cell["T"]),
-                "точек": len(pts),
+                "points": len(pts),
                 "spacing": float(dist[:, 1].mean()),
-                "формула": (2 * math.pi * R_MID / len(pts)
-                            if label == "кольцо" and cell["w"] == 0
+                "formula": (2 * math.pi * R_MID / len(pts)
+                            if label == "ring" and cell["w"] == 0
                             else math.sqrt(area / len(pts)) if area > 0 else float("nan")),
             })
     return pd.DataFrame(rows)
@@ -636,12 +636,12 @@ def chamfer_reference_probe(cell: str, n_grid=(250, 1000, 4000, 16000),
     ring, mid = features["t_ring"], features["t_mid"]
     return {
         "w": w,
-        "кольцо против независимого семпла кольца": chamfer(ring, ring_sample(len(ring), seed)),
-        "окружность против независимого семпла окружности":
+        "ring vs an independent sample of the ring": chamfer(ring, ring_sample(len(ring), seed)),
+        "circle vs an independent sample of the circle":
             chamfer(mid, circle_sample(len(mid), seed)),
-        "кольцо против идеальной средней окружности": chamfer(ring, mid),
-        "предсказание w/4": w / 4.0,
-        "сходимость по числу точек": {
+        "ring vs the ideal middle circle": chamfer(ring, mid),
+        "prediction w/4": w / 4.0,
+        "convergence in the number of points": {
             n: chamfer(ring_sample(n, seed), ring_sample(n, seed + 1)) for n in n_grid
         },
     }
@@ -675,17 +675,17 @@ def bracket_table(best: pd.DataFrame, cells: pd.DataFrame,
         radius = {"t_inner": R_MID - w / 2, "t_mid": R_MID,
                   "t_outer": R_MID + w / 2}[fam]
         norm, floor = float(tgt.median()), float(nul.median())
-        per_cell.append({"cell": ds, "w": w, "мишень": fam, "радиус": radius,
-                         "нормир_медиана": norm, "абс_медиана": norm * 2 * radius,
-                         "нормир_пол": floor, "абс_пол": floor * 2 * radius,
-                         "во сколько лучше пола": floor / norm})
+        per_cell.append({"cell": ds, "w": w, "target": fam, "radius": radius,
+                         "norm_median": norm, "abs_median": norm * 2 * radius,
+                         "norm_floor": floor, "abs_floor": floor * 2 * radius,
+                         "times better than floor": floor / norm})
     per_cell = pd.DataFrame(per_cell)
-    out = (per_cell.groupby(["w", "мишень", "радиус"])
-                   [["нормир_медиана", "абс_медиана", "нормир_пол", "абс_пол",
-                     "во сколько лучше пола"]]
+    out = (per_cell.groupby(["w", "target", "radius"])
+                   [["norm_median", "abs_median", "norm_floor", "abs_floor",
+                     "times better than floor"]]
                    .median().reset_index())
-    out["диаметр"] = 2 * out["радиус"]
-    return out.sort_values(["w", "радиус"]), per_cell
+    out["diameter"] = 2 * out["radius"]
+    return out.sort_values(["w", "radius"]), per_cell
 
 
 def multiplicity(df: pd.DataFrame, cells, family: str | None = "t_mid",
@@ -789,10 +789,10 @@ def ideal_fields(w: float) -> dict:
             return torch.tanh(k * (r - r_in)) - torch.tanh(k * (r - r_out))
         return f
 
-    out = {"|x| — тонкая окружность": radial,
-           "−dist до кольца — точное кольцо": neg_dist}
+    out = {"|x| — thin circle": radial,
+           "−dist to the ring — exact ring": neg_dist}
     for k in (1, 2, 4, 8, 16, 32):
-        out[f"плато tanh, крутизна {k}"] = plateau(k)
+        out[f"tanh plateau, steepness {k}"] = plateau(k)
     return out
 
 
@@ -846,7 +846,7 @@ def ceiling_probe(cell: str, spec=None, targets=FAMILIES,
 
     rows = []
     for name, fn in ideal_fields(w).items():
-        row = {"поле": name}
+        row = {"field": name}
         for fam in targets:
             if fam not in features:
                 continue
@@ -860,7 +860,7 @@ def ceiling_probe(cell: str, spec=None, targets=FAMILIES,
             row[fam] = res["score"]                       # АБСОЛЮТНЫЙ, см. докстроку
             row[fam + "_norm"] = res["score_normalized_by_diameter"]
         rows.append(row)
-    return pd.DataFrame(rows).set_index("поле")
+    return pd.DataFrame(rows).set_index("field")
 
 
 def per_cell_overlap(best: pd.DataFrame, cells: pd.DataFrame) -> pd.DataFrame:
@@ -879,10 +879,10 @@ def per_cell_overlap(best: pd.DataFrame, cells: pd.DataFrame) -> pd.DataFrame:
             continue
         params = cell_of(ds)
         rows.append({"cell": ds, "family": fam, **params,
-                     "цель_макс": float(tgt.max()), "цель_мед": float(tgt.median()),
-                     "пол_мин": float(nul.min()), "пол_мед": float(nul.median()),
-                     "перекрытие": float(tgt.max() > nul.min()),
-                     "доля цели выше пол_мин": float((tgt > nul.min()).mean()),
+                     "target_max": float(tgt.max()), "target_med": float(tgt.median()),
+                     "floor_min": float(nul.min()), "floor_med": float(nul.median()),
+                     "overlap": float(tgt.max() > nul.min()),
+                     "fraction of target above floor_min": float((tgt > nul.min()).mean()),
                      "p_superior": superiority_probability(tgt, nul)})
     return pd.DataFrame(rows)
 
@@ -1015,7 +1015,7 @@ def head_scores(pairs, spec=None, results_dir: str | Path = DEFAULT_RESULTS_DIR,
                      "feature_name": feature_name, "family": family_of(feature_name),
                      "head_score": res["score_normalized_by_diameter"]})
         if verbose and i % 50 == 0:
-            print(f"  [голова] {i}/{len(pairs)}", flush=True)
+            print(f"  [head] {i}/{len(pairs)}", flush=True)
 
     table = pd.DataFrame(rows)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -1095,12 +1095,12 @@ def continuity_test(df: pd.DataFrame, cells: pd.DataFrame,
         if broke is None:
             hh = head_hit.get(key)
             if hh is False:
-                broke = "голова"
+                broke = "head"
             elif hh is None:
                 # Голова для этой пары не считана: цепочка дошла до неё, но
                 # последний шаг неизвестен. Это НЕ провал теста — это его
                 # неопределённость, и такие строки не должны попадать в долю.
-                broke = "голова не считана"
+                broke = "head not scored"
                 decided = False
         rows.append({"dataset_type": r.dataset_type, "model_path": r.model_path,
                      "feature_name": r.feature_name, "family": r.family,
@@ -1108,7 +1108,7 @@ def continuity_test(df: pd.DataFrame, cells: pd.DataFrame,
                      "layer_id": int(r.layer_id), "score": float(r.score),
                      "decided": decided,
                      "survives": (broke is None) if decided else np.nan,
-                     "оборвалось на": broke})
+                     "broke at": broke})
     return pd.DataFrame(rows)
 
 
@@ -1165,6 +1165,6 @@ def reference_density_probe(cell: str, model_path: str, sizes=(250, 500, 1000, 2
             structural_kwargs=dict(spec.eval.structural_kwargs),
             run_tubular=False, verbose=False)
         scores = np.array([r["structural_score_normalized_by_diameter"] for r in res])
-        rows.append({"точек в эталоне": n, "медиана скора": float(np.median(scores)),
-                     "лучший нейрон": float(scores.min())})
+        rows.append({"points in the reference": n, "median score": float(np.median(scores)),
+                     "best neuron": float(scores.min())})
     return pd.DataFrame(rows)

@@ -34,8 +34,8 @@ CT, CN = "#2ca02c", "#8c8c8c"          # цель и нули
 FAMILIES = ("t_inner", "t_mid", "t_outer", "t_ring")
 FAM_COLOUR = {"t_inner": "#2ca02c", "t_mid": "#1f77b4",
               "t_outer": "#9467bd", "t_ring": "#d62728"}
-FAM_LABEL = {"t_inner": "внутренняя окружность", "t_mid": "средняя окружность",
-             "t_outer": "внешняя окружность", "t_ring": "кольцо"}
+FAM_LABEL = {"t_inner": "inner circle", "t_mid": "middle circle",
+             "t_outer": "outer circle", "t_ring": "ring"}
 
 
 @contextmanager
@@ -61,7 +61,7 @@ def _strip(ax, y, values, colour, label_right=True, jitter=0.16, rng=None, extra
     ax.plot([q1, q3], [y, y], color=colour, lw=3.0, alpha=.85, zorder=4)
     ax.plot([med, med], [y - .30, y + .30], color="k", lw=2.0, zorder=5)
     if label_right:
-        ax.text(1.005, y, f"мед {med:.3f}  мин {values.min():.3f}  n={len(values)}{extra}",
+        ax.text(1.005, y, f"med {med:.3f}  min {values.min():.3f}  n={len(values)}{extra}",
                 transform=ax.get_yaxis_transform(), va="center", fontsize=8,
                 color="0.25")
 
@@ -127,8 +127,8 @@ def plot_targets_and_nulls(cell, loader, size: float = 6.5, title=None):
     X, y, features, roles = loader(cell)
     X, y = X.numpy(), y.numpy()
     fig, ax = plt.subplots(figsize=(size, size))
-    ax.scatter(*X[y == 0].T, s=3, c=C0, linewidths=0, label="класс 0 (кольцо)")
-    ax.scatter(*X[y == 1].T, s=3, c=C1, linewidths=0, label="класс 1 (диск)")
+    ax.scatter(*X[y == 0].T, s=3, c=C0, linewidths=0, label="class 0 (ring)")
+    ax.scatter(*X[y == 1].T, s=3, c=C1, linewidths=0, label="class 1 (disk)")
 
     for name, pts in features.items():
         pts = pts.numpy()
@@ -136,8 +136,8 @@ def plot_targets_and_nulls(cell, loader, size: float = 6.5, title=None):
             ax.scatter(*pts.T, s=3.0, c=CT, linewidths=0)
         else:
             ax.scatter(*pts.T, s=1.4, c=CN, linewidths=0)
-    ax.scatter([], [], s=12, c=CT, label="мишени (то, с чем сравнивается линия уровня)")
-    ax.scatter([], [], s=12, c=CN, label="нули A.1 — те же мишени, снесённые в пустые места")
+    ax.scatter([], [], s=12, c=CT, label="targets (what the level set is compared with)")
+    ax.scatter([], [], s=12, c=CN, label="A.1 nulls — the same targets, moved to empty places")
 
     ax.set_aspect("equal")
     ax.grid(alpha=.2)
@@ -151,8 +151,8 @@ def plot_target_shapes(loader, cell, size: float = 5.6):
     """The four measurement targets of one cell, drawn apart from the data."""
     X, y, features, roles = loader(cell)
     fig, ax = plt.subplots(figsize=(size, size))
-    ax.scatter(*X[y == 0].numpy().T, s=2, c=C0, alpha=.30, linewidths=0, label="данные: кольцо")
-    ax.scatter(*X[y == 1].numpy().T, s=2, c=C1, alpha=.30, linewidths=0, label="данные: диск")
+    ax.scatter(*X[y == 0].numpy().T, s=2, c=C0, alpha=.30, linewidths=0, label="data: ring")
+    ax.scatter(*X[y == 1].numpy().T, s=2, c=C1, alpha=.30, linewidths=0, label="data: disk")
     for fam in ("t_ring", "t_outer", "t_mid", "t_inner"):
         if fam not in features:
             continue
@@ -162,7 +162,7 @@ def plot_target_shapes(loader, cell, size: float = 5.6):
     ax.set_aspect("equal")
     ax.grid(alpha=.2)
     ax.legend(fontsize=9, loc="upper right")
-    ax.set_title("четыре кандидата в мишень на одних и тех же данных", fontsize=11)
+    ax.set_title("four candidate targets on the same data", fontsize=11)
     fig.tight_layout()
     return fig
 
@@ -172,7 +172,7 @@ def plot_target_shapes(loader, cell, size: float = 5.6):
 # ----------------------------------------------------------------------
 
 def plot_strips(rows, threshold=None, title=None, caption=None,
-                xlim=None, xlabel="скор лучшего нейрона (меньше = лучше)",
+                xlim=None, xlabel="best-neuron score (smaller = better)",
                 seed: int = 0, height: float = 0.62, row_thresholds=None,
                 thumbs=None, loader=None, groups=None, ratios=None,
                 null_medians=None, vline=None):
@@ -260,14 +260,14 @@ def plot_strips(rows, threshold=None, title=None, caption=None,
                 ax.plot([t, t], [n - 1 - i - .34, n - 1 - i + .34],
                         color="crimson", ls=":", lw=1.7, zorder=6)
     if row_thresholds is not None or null_medians is not None:
-        xlabel += ("\nчёрная черта — медиана цели"
-                   + (",  серая — медиана её нулей (×N — их отношение)"
+        xlabel += ("\nblack tick — target median"
+                   + (",  grey tick — median of its nulls (×N — their ratio)"
                       if null_medians is not None else "")
-                   + (",  красный пунктир — порог своей конфигурации"
+                   + (",  red dotted — threshold of its own configuration"
                       if row_thresholds is not None else ""))
     if threshold is not None:
         ax.axvline(threshold, color="crimson", ls=":", lw=1.7,
-                   label=f"порог из своих нулей = {threshold:.3f}")
+                   label=f"threshold from its own nulls = {threshold:.3f}")
     if vline is not None:
         ax.axvline(vline[0], color="crimson", ls="--", lw=1.5, label=vline[1])
 
@@ -325,13 +325,13 @@ def plot_score_histograms(best, families=("t_inner", "t_mid", "t_outer", "t_ring
             sel = sel[sel["dataset_type"].isin(cells)]
         tgt = sel[sel["feature_role"] == "target"]["score"]
         nul = sel[sel["feature_role"] == "null"]["score"]
-        ax.hist(nul, bins=edges, color=CN, alpha=.85, label="нули (пол)", density=True)
-        ax.hist(tgt, bins=edges, color=FAM_COLOUR[fam], alpha=.70, label="цель", density=True)
+        ax.hist(nul, bins=edges, color=CN, alpha=.85, label="nulls (floor)", density=True)
+        ax.hist(tgt, bins=edges, color=FAM_COLOUR[fam], alpha=.70, label="target", density=True)
         ax.axvline(0.1, color="k", ls="--", lw=1.0)
-        ax.set_title(f"{FAM_LABEL[fam]}\nцелей {len(tgt)}, нулей {len(nul)}", fontsize=9.5)
-        ax.set_xlabel("скор лучшего нейрона", fontsize=8.5)
+        ax.set_title(f"{FAM_LABEL[fam]}\ntargets {len(tgt)}, nulls {len(nul)}", fontsize=9.5)
+        ax.set_xlabel("best-neuron score", fontsize=8.5)
         ax.grid(alpha=.2)
-    axes[0][0].set_ylabel("плотность (нормировано)", fontsize=9)
+    axes[0][0].set_ylabel("density (normalised)", fontsize=9)
     axes[0][0].legend(fontsize=8)
     if title:
         fig.suptitle(title, fontsize=11.5)
@@ -383,14 +383,14 @@ def plot_axis_panels(cells, axis, panels, family="t_mid", task="relevant",
         # величин (абсолютный Чамфер, отношение «пол / цель») он бессмыслен
         floor = sel0["threshold"].median()
         ax1.axhline(floor, color=CN, ls="--", lw=1.2)
-        ax1.text(0.015, floor, " медианный порог по этим ячейкам", va="bottom",
+        ax1.text(0.015, floor, " median threshold over these cells", va="bottom",
                  fontsize=7.5, color="0.35", transform=ax1.get_yaxis_transform())
     ax2.axhline(0.01, color="crimson", ls=":", lw=1.2)
-    ax2.text(0.015, 0.01, " 1 % — заложенный уровень ложных срабатываний", va="bottom",
+    ax2.text(0.015, 0.01, " 1% — the built-in false-positive rate", va="bottom",
              fontsize=7.5, color="crimson", transform=ax2.get_yaxis_transform())
 
-    for ax, ylab in ((ax1, value_label or "медианный скор лучшего нейрона"),
-                     (ax2, "доля моделей со свидетелем")):
+    for ax, ylab in ((ax1, value_label or "median best-neuron score"),
+                     (ax2, "fraction of models with a witness")):
         ax.set_xlabel(xlabel or axis, fontsize=9.5)
         ax.set_ylabel(ylab, fontsize=9.5)
         ax.grid(alpha=.25)
@@ -429,21 +429,21 @@ def plot_paired_scatter(best, fam_x, fam_y, task="relevant", cells=None,
     fig, ax = plt.subplots(figsize=(5.4, 5.2))
     ax.scatter(piv[fam_x], piv[fam_y], s=12, alpha=.45, color="#1f77b4", edgecolors="none")
     lim = float(max(piv[fam_x].max(), piv[fam_y].max())) * 1.05
-    ax.plot([0, lim], [0, lim], color="k", lw=1, ls="--", label="равенство")
+    ax.plot([0, lim], [0, lim], color="k", lw=1, ls="--", label="equality")
     if thresholds:
         ax.axvline(thresholds[0], color=FAM_COLOUR[fam_x], ls=":", lw=1.4,
-                   label=f"порог {FAM_LABEL[fam_x]}")
+                   label=f"threshold, {FAM_LABEL[fam_x]}")
         ax.axhline(thresholds[1], color=FAM_COLOUR[fam_y], ls=":", lw=1.4,
-                   label=f"порог {FAM_LABEL[fam_y]}")
+                   label=f"threshold, {FAM_LABEL[fam_y]}")
     below = float((piv[fam_y] < piv[fam_x]).mean())
-    ax.set_xlabel(f"скор на «{FAM_LABEL[fam_x]}»", fontsize=9.5)
-    ax.set_ylabel(f"скор на «{FAM_LABEL[fam_y]}»", fontsize=9.5)
+    ax.set_xlabel(f"score on the {FAM_LABEL[fam_x]}", fontsize=9.5)
+    ax.set_ylabel(f"score on the {FAM_LABEL[fam_y]}", fontsize=9.5)
     ax.set_xlim(0, lim)
     ax.set_ylim(0, lim)
     ax.set_aspect("equal")
     ax.grid(alpha=.25)
     ax.legend(fontsize=8, loc="lower right")
-    ax.set_title((title or "") + f"\nниже диагонали {below:.0%} моделей "
+    ax.set_title((title or "") + f"\nbelow the diagonal: {below:.0%} of models "
                  f"(n = {len(piv)})", fontsize=10)
     fig.tight_layout()
     return fig
@@ -465,16 +465,16 @@ def plot_multiplicity(counts_by_group, n_neurons: int = 25, title=None, ncols: i
         ax = axes[k // ncols][k % ncols]
         ax.hist(counts, bins=edges, color="#1f77b4", alpha=.8)
         ax.axvline(float(np.median(counts)), color="crimson", lw=1.5,
-                   label=f"медиана {np.median(counts):.0f}")
+                   label=f"median {np.median(counts):.0f}")
         ax.set_title(label, fontsize=9)
         ax.grid(alpha=.2)
         ax.legend(fontsize=7.5)
     for k in range(len(items), nrows * ncols):
         axes[k // ncols][k % ncols].axis("off")
     for ax in axes[-1]:
-        ax.set_xlabel("нейронов-свидетелей в модели (из 25)", fontsize=8.5)
+        ax.set_xlabel("witness neurons per model (of 25)", fontsize=8.5)
     for row in axes:
-        row[0].set_ylabel("моделей", fontsize=8.5)
+        row[0].set_ylabel("models", fontsize=8.5)
     if title:
         fig.suptitle(title, fontsize=11.5)
     fig.tight_layout()
@@ -485,16 +485,16 @@ def plot_layer_profile(profiles, title=None):
     """Share of neurons clearing the bar, layer by layer.
 
     ``profiles`` maps a label to a DataFrame with ``layer_id`` and
-    ``доля_срабатываний``. Layer 0 is the theorem control and must be flat zero.
+    ``hit_rate``. Layer 0 is the theorem control and must be flat zero.
     """
     fig, ax = plt.subplots(figsize=(6.6, 4.0))
     for (label, prof), colour in zip(profiles.items(),
                                      plt.cm.tab10(np.linspace(0, .9, len(profiles)))):
-        ax.plot(prof["layer_id"], prof["доля_срабатываний"], marker="o",
+        ax.plot(prof["layer_id"], prof["hit_rate"], marker="o",
                 color=colour, label=label, lw=1.8)
     ax.axhline(0, color="k", lw=1)
-    ax.set_xlabel("слой (0 — первый скрытый; его линии уровня прямые по теореме)", fontsize=9)
-    ax.set_ylabel("доля нейронов слоя, прошедших порог своей ячейки", fontsize=9)
+    ax.set_xlabel("layer (0 is the first hidden layer; its level sets are straight lines by theorem)", fontsize=9)
+    ax.set_ylabel("fraction of the layer's neurons passing their cell's threshold", fontsize=9)
     ax.set_xticks(sorted({int(v) for p in profiles.values() for v in p["layer_id"]}))
     ax.grid(alpha=.25)
     ax.legend(fontsize=8.5)
@@ -518,19 +518,19 @@ def plot_spacing(table, grid_step: float, title=None):
         block = block.sort_values("w")
         colour = plt.cm.plasma(0.15 + 0.7 * (n_ring / max(table["n_ring"])))
         ax1.plot(block["w"], block["spacing"], marker="o", color=colour,
-                 label=f"{n_ring} точек", lw=1.8)
+                 label=f"{n_ring} points", lw=1.8)
         ax2.plot(block["w"], block["spacing"] / grid_step, marker="o", color=colour,
-                 label=f"{n_ring} точек", lw=1.8)
+                 label=f"{n_ring} points", lw=1.8)
     ax2.axhline(1.0, color="crimson", ls="--", lw=1.3)
-    ax2.text(0.02, 1.0, " шаг сетки", va="bottom", fontsize=8, color="crimson",
+    ax2.text(0.02, 1.0, " grid step", va="bottom", fontsize=8, color="crimson",
              transform=ax2.get_yaxis_transform())
-    ax1.set_ylabel("среднее расстояние до ближайшего соседа", fontsize=9)
-    ax2.set_ylabel("оно же, в шагах сетки", fontsize=9)
+    ax1.set_ylabel("mean distance to the nearest neighbour", fontsize=9)
+    ax2.set_ylabel("the same, in grid steps", fontsize=9)
     for ax in (ax1, ax2):
-        ax.set_xlabel("ширина кольца w", fontsize=9.5)
+        ax.set_xlabel("ring width w", fontsize=9.5)
         ax.set_xticks([0.0, 0.5, 1.0])
         ax.grid(alpha=.25)
-        ax.legend(fontsize=8.5, title="точек на кольце", title_fontsize=8)
+        ax.legend(fontsize=8.5, title="points on the ring", title_fontsize=8)
     if title:
         fig.suptitle(title, fontsize=11.5)
     fig.tight_layout()
@@ -539,14 +539,14 @@ def plot_spacing(table, grid_step: float, title=None):
 
 def plot_trainability(table):
     """Share of initialisations reaching the 100 % gate, cell by cell."""
-    t = table.sort_values("доля успеха")
+    t = table.sort_values("success rate")
     fig, ax = plt.subplots(figsize=(9.5, max(3.0, 0.22 * len(t))))
     colours = [C0 if task == "relevant" else C1 for task in t["task"]]
-    ax.barh(range(len(t)), t["доля успеха"], color=colours, height=.75)
+    ax.barh(range(len(t)), t["success rate"], color=colours, height=.75)
     ax.set_yticks(range(len(t)))
     ax.set_yticklabels(t["cell"], fontsize=6)
     ax.axvline(1.0, color="k", lw=1)
-    ax.set_xlabel("доля из 50 инициализаций, дошедших до 100 % test accuracy", fontsize=9.5)
+    ax.set_xlabel("fraction of the 50 initialisations that reached 100% test accuracy", fontsize=9.5)
     ax.set_xlim(0, 1.05)
     ax.grid(alpha=.25, axis="x")
     ax.scatter([], [], c=C0, label="task-relevant")
@@ -568,7 +568,7 @@ def plot_two_outcomes(merged, title=None):
     fig, ax = plt.subplots(figsize=(7.6, 4.8))
     MK = {0.25: "o", 0.5: "s"}
     for (rho, R), block in merged.groupby(["rho", "R"]):
-        ax.scatter(block["доля успеха"], block["med_target"], s=46,
+        ax.scatter(block["success rate"], block["med_target"], s=46,
                    marker=MK.get(R, "^"), alpha=.85, edgecolors="none",
                    color=plt.cm.tab10([0.05, 0.15, 0.25][sorted(merged["rho"].unique()).index(rho)]))
     for rho in sorted(merged["rho"].unique()):
@@ -578,16 +578,16 @@ def plot_two_outcomes(merged, title=None):
         ax.scatter([], [], s=46, marker=mk, color="0.45", label=f"R = {R}")
 
     lines = []
-    for col, name in (("rho", "по балансу ρ"), ("R", "по радиусу диска R"),
-                      ("w", "по ширине кольца w")):
-        med = merged.groupby(col)["доля успеха"].median()
+    for col, name in (("rho", "along the balance ρ"), ("R", "along the disk radius R"),
+                      ("w", "along the ring width w")):
+        med = merged.groupby(col)["success rate"].median()
         lines.append(f"{name}:  " + "   ".join(f"{k}→{v:.2f}" for k, v in med.items()))
-    ax.text(0.02, 0.03, "медианная доля успеха обучения\n" + "\n".join(lines),
+    ax.text(0.02, 0.03, "median training success rate\n" + "\n".join(lines),
             transform=ax.transAxes, fontsize=8, va="bottom", color="0.25",
             bbox=dict(boxstyle="round,pad=0.4", fc="white", ec="0.8"))
 
-    ax.set_xlabel("доля инициализаций, дошедших до гейта", fontsize=9.5)
-    ax.set_ylabel("медианный скор лучшего нейрона", fontsize=9.5)
+    ax.set_xlabel("fraction of initialisations that reached the gate", fontsize=9.5)
+    ax.set_ylabel("median best-neuron score", fontsize=9.5)
     ax.grid(alpha=.25)
     ax.legend(fontsize=8, ncol=2, loc="upper right")
     if title:
@@ -614,8 +614,8 @@ def plot_agreement(matrix, title=None):
             v = matrix.values[i, j]
             ax.text(j, i, f"{v:.2f}", ha="center", va="center", fontsize=9,
                     color="w" if v < 0.8 else "k")
-    fig.colorbar(im, ax=ax, label="доля моделей с одинаковым вердиктом", shrink=.85)
-    ax.set_title(title or "согласие вердиктов между мишенями", fontsize=10.5, pad=12)
+    fig.colorbar(im, ax=ax, label="fraction of models with the same verdict", shrink=.85)
+    ax.set_title(title or "agreement of verdicts between targets", fontsize=10.5, pad=12)
     fig.tight_layout()
     return fig
 
@@ -631,22 +631,22 @@ def plot_discrimination(table, title=None):
     fams = list(table.index)
     x = np.arange(len(fams))
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.0, 3.9))
-    ax1.bar(x - 0.19, table["медиана_пола"], width=.36, color=CN, label="пол (медиана нулей)")
-    ax1.bar(x + 0.19, table["медиана_цели"], width=.36,
-            color=[FAM_COLOUR[f] for f in fams], label="цель (медиана)")
+    ax1.bar(x - 0.19, table["floor_median"], width=.36, color=CN, label="floor (median of the nulls)")
+    ax1.bar(x + 0.19, table["target_median"], width=.36,
+            color=[FAM_COLOUR[f] for f in fams], label="target (median)")
     ax1.set_xticks(x)
     ax1.set_xticklabels([FAM_LABEL[f] for f in fams], rotation=20, ha="right", fontsize=8.5)
-    ax1.set_ylabel("скор (нормированный)", fontsize=9)
+    ax1.set_ylabel("score (normalised)", fontsize=9)
     ax1.legend(fontsize=8.5)
     ax1.grid(alpha=.25, axis="y")
 
-    ax2.bar(x, table["пол/цель"], color=[FAM_COLOUR[f] for f in fams])
-    for i, v in enumerate(table["пол/цель"]):
+    ax2.bar(x, table["floor/target"], color=[FAM_COLOUR[f] for f in fams])
+    for i, v in enumerate(table["floor/target"]):
         ax2.text(i, v + 0.06, f"{v:.2f}", ha="center", fontsize=9)
     ax2.axhline(1.0, color="crimson", ls="--", lw=1.2)
     ax2.set_xticks(x)
     ax2.set_xticklabels([FAM_LABEL[f] for f in fams], rotation=20, ha="right", fontsize=8.5)
-    ax2.set_ylabel("во сколько раз цель лучше своего пола", fontsize=9)
+    ax2.set_ylabel("how many times the target beats its own floor", fontsize=9)
     ax2.grid(alpha=.25, axis="y")
     if title:
         fig.suptitle(title, fontsize=11.5)
@@ -718,7 +718,7 @@ def plot_config_panels(config_cells, best, cells, loader, xmax=None, seed: int =
             t = thr.get((name, fam))
             if t is not None and t == t:
                 ax.axvline(t, color="crimson", ls=":", lw=1.2)
-                ax.text(.985, .06, f"доля {rate.get((name, fam), float('nan')):.2f}",
+                ax.text(.985, .06, f"fraction {rate.get((name, fam), float('nan')):.2f}",
                         transform=ax.transAxes, ha="right", va="bottom", fontsize=7,
                         color="0.25")
             if show_gap and len(tgt) and len(nul):
@@ -728,14 +728,14 @@ def plot_config_panels(config_cells, best, cells, loader, xmax=None, seed: int =
                         weight="bold")
             ax.set_xlim(0, xmax); ax.set_ylim(-0.55, 1.55)
             ax.set_yticks([0, 1])
-            ax.set_yticklabels(["цель", "пол"] if j == 0 else ["", ""], fontsize=6.5)
+            ax.set_yticklabels(["target", "floor"] if j == 0 else ["", ""], fontsize=6.5)
             ax.grid(axis="x", alpha=.2)
             if i == 0:
                 ax.set_title(FAM_LABEL[fam], fontsize=8.5)
             if i < nrows - 1:
                 ax.set_xticklabels([])
             else:
-                ax.set_xlabel("скор лучшего нейрона", fontsize=7.5)
+                ax.set_xlabel("best-neuron score", fontsize=7.5)
             ax.tick_params(labelsize=6.5)
 
     if title:
@@ -767,13 +767,13 @@ def plot_ceiling(table, real_best=None, grid_step=None, title=None):
         ax1.text(i, ceil_abs[f] + .0012, f"{ceil_abs[f]:.4f}", ha="center", fontsize=9)
     if grid_step is not None:
         ax1.axhline(grid_step / 2, color="crimson", ls="--", lw=1.4)
-        ax1.text(.99, grid_step / 2, "h/2 — половина шага сетки ", va="bottom", ha="right",
+        ax1.text(.99, grid_step / 2, "h/2 — half the grid step ", va="bottom", ha="right",
                  fontsize=8.5, color="crimson", transform=ax1.get_yaxis_transform())
     ax1.set_xticks(x)
     ax1.set_xticklabels([FAM_LABEL[f].replace(" ", "\n") for f in fams], fontsize=8.5)
-    ax1.set_ylabel("потолок, АБСОЛЮТНОЕ расстояние Чамфера", fontsize=9.5)
+    ax1.set_ylabel("ceiling, ABSOLUTE Chamfer distance", fontsize=9.5)
     ax1.grid(axis="y", alpha=.25)
-    ax1.set_title("потолок задан формой и шагом сетки", fontsize=10.5)
+    ax1.set_title("the ceiling is set by the shape and the grid step", fontsize=10.5)
 
     if real_best is not None:
         norm = table[[f + "_norm" for f in fams]].min()
@@ -785,9 +785,9 @@ def plot_ceiling(table, real_best=None, grid_step=None, title=None):
         ax2.axhline(1.0, color="crimson", ls="--", lw=1.4)
         ax2.set_xticks(x)
         ax2.set_xticklabels([FAM_LABEL[f].replace(" ", "\n") for f in fams], fontsize=8.5)
-        ax2.set_ylabel("во сколько раз лучший реальный нейрон\nдальше своего потолка", fontsize=9.5)
+        ax2.set_ylabel("how many times further from its ceiling\nthe best real neuron is", fontsize=9.5)
         ax2.grid(axis="y", alpha=.25)
-        ax2.set_title("отношение безразмерно: мишени сравнимы", fontsize=10.5)
+        ax2.set_title("the ratio is dimensionless: the targets are comparable", fontsize=10.5)
     if title:
         fig.suptitle(title, fontsize=11.5)
     fig.tight_layout()
@@ -805,23 +805,23 @@ def plot_single_network_threshold(table, title=None):
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(11.0, 4.2))
     for task, block in table.groupby("task"):
         colour = CT if task == "relevant" else C1
-        ax1.scatter(block["доля: порог по 50 моделям"], block["доля: порог по СВОЕЙ сети"],
+        ax1.scatter(block["rate: threshold from 50 models"], block["rate: threshold from its OWN network"],
                     s=45, color=colour, alpha=.85, label=task, edgecolors="none")
     ax1.plot([0, 1], [0, 1], color="k", ls="--", lw=1)
-    ax1.set_xlabel("доля свидетелей при пороге по 50 моделям", fontsize=9.5)
-    ax1.set_ylabel("доля свидетелей при пороге по СВОЕЙ сети", fontsize=9.5)
+    ax1.set_xlabel("witness fraction with the threshold from 50 models", fontsize=9.5)
+    ax1.set_ylabel("witness fraction with the threshold from its OWN network", fontsize=9.5)
     ax1.set_aspect("equal"); ax1.set_xlim(-.03, 1.03); ax1.set_ylim(-.03, 1.03)
     ax1.grid(alpha=.25); ax1.legend(fontsize=9)
-    ax1.set_title("одна точка — одна конфигурация", fontsize=10.5)
+    ax1.set_title("one point — one configuration", fontsize=10.5)
 
     for task, block in table.groupby("task"):
         colour = CT if task == "relevant" else C1
-        ax2.hist(block["согласие"], bins=np.linspace(.5, 1.0, 16), color=colour,
+        ax2.hist(block["agreement"], bins=np.linspace(.5, 1.0, 16), color=colour,
                  alpha=.7, label=task)
-    ax2.set_xlabel("доля моделей, у которых оба порога дают ОДИН вердикт", fontsize=9.5)
-    ax2.set_ylabel("конфигураций", fontsize=9.5)
+    ax2.set_xlabel("fraction of models for which both thresholds give the SAME verdict", fontsize=9.5)
+    ax2.set_ylabel("configurations", fontsize=9.5)
     ax2.grid(alpha=.25); ax2.legend(fontsize=9)
-    ax2.set_title("совпадение вердиктов, модель за моделью", fontsize=10.5)
+    ax2.set_title("agreement of verdicts, model by model", fontsize=10.5)
     if title:
         fig.suptitle(title, fontsize=11.5)
     fig.tight_layout()
@@ -844,13 +844,13 @@ def plot_grouping_options(tables, title=None):
         ax.scatter(i + rng.uniform(-.16, .16, len(v)), v, s=42, alpha=.8,
                    edgecolors="none")
         ax.plot([i - .28, i + .28], [np.median(v)] * 2, color="k", lw=2.2, zorder=5)
-        ax.text(i, max(v) + .08, f"макс {max(v):.2f}", ha="center", fontsize=8.5)
+        ax.text(i, max(v) + .08, f"max {max(v):.2f}", ha="center", fontsize=8.5)
     ax.axhline(1.0, color="crimson", ls="--", lw=1.4)
-    ax.text(.01, 1.02, " выше — объединять нельзя", transform=ax.get_yaxis_transform(),
+    ax.text(.01, 1.02, " above — must not be pooled", transform=ax.get_yaxis_transform(),
             fontsize=8.5, color="crimson", va="bottom")
     ax.set_xticks(range(len(names)))
     ax.set_xticklabels(names, fontsize=9)
-    ax.set_ylabel("разброс МЕЖДУ конфигурациями / разброс ВНУТРИ одной", fontsize=9.5)
+    ax.set_ylabel("spread BETWEEN configurations / spread WITHIN one", fontsize=9.5)
     ax.grid(alpha=.25, axis="y")
     if title:
         ax.set_title(title, fontsize=11)
@@ -873,24 +873,24 @@ def plot_bracket(bracket, title=None):
     and the dimensionless ratio of the target to its own floor.
     """
     fig, axes = plt.subplots(1, 3, figsize=(13.2, 4.1))
-    cols = [("нормир_медиана", "медиана скора цели\n(Чамфер / диаметр мишени)", False),
-            ("абс_медиана", "медиана расстояния Чамфера\n(абсолютное)", False),
-            ("во сколько лучше пола", "во сколько цель лучше СВОЕГО пола\n(безразмерно)", True)]
+    cols = [("norm_median", "median target score\n(Chamfer / target diameter)", False),
+            ("abs_median", "median Chamfer distance\n(absolute)", False),
+            ("times better than floor", "how many times the target beats ITS OWN floor\n(dimensionless)", True)]
     for ax, (col, ylab, is_ratio) in zip(axes, cols):
         for w, block in bracket.groupby("w"):
-            block = block.sort_values("радиус")
-            ax.plot(block["радиус"], block[col], marker="o" if w == 0.5 else "s",
-                    lw=1.9, ms=7, label=f"кольцо шириной w = {w}")
+            block = block.sort_values("radius")
+            ax.plot(block["radius"], block[col], marker="o" if w == 0.5 else "s",
+                    lw=1.9, ms=7, label=f"ring of width w = {w}")
             for _, r in block.iterrows():
-                ax.annotate({"t_inner": "внутр.", "t_mid": "средн.", "t_outer": "внешн."}
-                            [r["мишень"]], (r["радиус"], r[col]),
+                ax.annotate({"t_inner": "inner", "t_mid": "middle", "t_outer": "outer"}
+                            [r["target"]], (r["radius"], r[col]),
                             textcoords="offset points", xytext=(0, 8), ha="center",
                             fontsize=7, color="0.35")
         if is_ratio:
             ax.axhline(1.0, color="crimson", ls="--", lw=1.2)
-            ax.text(.98, 1.0, "уровень случайности ", transform=ax.get_yaxis_transform(),
+            ax.text(.98, 1.0, "chance level ", transform=ax.get_yaxis_transform(),
                     fontsize=7.5, color="crimson", va="top", ha="right")
-        ax.set_xlabel("радиус зондирующей окружности", fontsize=9)
+        ax.set_xlabel("radius of the probing circle", fontsize=9)
         ax.set_ylabel(ylab, fontsize=8.5)
         ax.margins(x=.16, y=.16)
         ax.grid(alpha=.25)
@@ -919,18 +919,18 @@ def plot_paired_scatters(best, pairs, task="relevant", cells=None, thresholds=No
         ax.scatter(piv[fam_x], piv[fam_y], s=11, alpha=.4, color="#1f77b4",
                    edgecolors="none")
         lim = float(max(piv[fam_x].max(), piv[fam_y].max())) * 1.05
-        ax.plot([0, lim], [0, lim], color="k", lw=1, ls="--", label="равенство")
+        ax.plot([0, lim], [0, lim], color="k", lw=1, ls="--", label="equality")
         if thresholds:
             tx, ty = thresholds[(fam_x, fam_y)]
             ax.axvline(tx, color=FAM_COLOUR[fam_x], ls=":", lw=1.4)
             ax.axhline(ty, color=FAM_COLOUR[fam_y], ls=":", lw=1.4)
         below = float((piv[fam_y] < piv[fam_x]).mean())
         rho = float(piv[fam_x].corr(piv[fam_y], method="spearman"))
-        ax.set_xlabel(f"скор на «{FAM_LABEL[fam_x]}»", fontsize=9)
-        ax.set_ylabel(f"скор на «{FAM_LABEL[fam_y]}»", fontsize=9)
+        ax.set_xlabel(f"score on the {FAM_LABEL[fam_x]}", fontsize=9)
+        ax.set_ylabel(f"score on the {FAM_LABEL[fam_y]}", fontsize=9)
         ax.set_xlim(0, lim); ax.set_ylim(0, lim); ax.set_aspect("equal")
         ax.grid(alpha=.25); ax.legend(fontsize=8, loc="lower right")
-        ax.set_title(f"ниже диагонали {below:.0%} моделей\nранговая корреляция {rho:+.2f}"
+        ax.set_title(f"below the diagonal: {below:.0%} of models\nrank correlation {rho:+.2f}"
                      f"   (n = {len(piv)})", fontsize=9.5)
     if suptitle:
         fig.suptitle(suptitle, fontsize=11.5)
@@ -957,13 +957,13 @@ def plot_chromatic_ground_truth(chrom, cells, title=None):
         ax1.scatter(i + rng.uniform(-.2, .2, len(v)), v, s=48, color=colour,
                     alpha=.85, edgecolors="none")
         ax1.plot([i - .3, i + .3], [np.median(v)] * 2, color="k", lw=2.2, zorder=5)
-        ax1.text(i, max(v) + .06, f"{(v > 0).sum()} из {len(v)}\nс ядром",
+        ax1.text(i, max(v) + .06, f"{(v > 0).sum()} of {len(v)}\nwith a kernel",
                  ha="center", fontsize=9)
     ax1.set_xticks([0, 1]); ax1.set_xticklabels(["task-relevant", "task-irrelevant"], fontsize=10)
-    ax1.set_ylabel("персистентность kernel-класса\n(хроматический альфа-комплекс)", fontsize=9)
+    ax1.set_ylabel("persistence of the kernel class\n(chromatic alpha complex)", fontsize=9)
     ax1.set_ylim(-0.08, 1.45)
     ax1.grid(alpha=.25, axis="y")
-    ax1.set_title("одна точка — одна конфигурация датасета", fontsize=10.5)
+    ax1.set_title("one point — one dataset configuration", fontsize=10.5)
 
     fams = list(FAMILIES)
     x = np.arange(len(fams))
@@ -973,18 +973,18 @@ def plot_chromatic_ground_truth(chrom, cells, title=None):
         i_ = cells[(cells["family"] == f) & (cells["task"] == "irrelevant")]["rate"]
         fn.append(1 - float(r.median())); fp.append(float(i_.median()))
     ax2.bar(x - .19, fn, width=.36, color=[FAM_COLOUR[f] for f in fams],
-            label="пропуски (медиана по конфигурациям)")
-    ax2.bar(x + .19, fp, width=.36, color=CN, label="ложные срабатывания")
+            label="misses (median over configurations)")
+    ax2.bar(x + .19, fp, width=.36, color=CN, label="false firings")
     for i, (a, b) in enumerate(zip(fn, fp)):
         ax2.text(i - .19, a + .015, f"{a:.2f}", ha="center", fontsize=8.5)
         ax2.text(i + .19, b + .015, f"{b:.2f}", ha="center", fontsize=8.5)
     ax2.set_xticks(x)
     ax2.set_xticklabels([FAM_LABEL[f].replace(" ", "\n") for f in fams], fontsize=8.5)
-    ax2.set_ylabel("доля моделей", fontsize=9.5)
+    ax2.set_ylabel("fraction of models", fontsize=9.5)
     ax2.set_ylim(0, max(max(fn), max(fp)) * 1.35)
     ax2.grid(alpha=.25, axis="y")
     ax2.legend(fontsize=8.5, loc="upper left", framealpha=.95)
-    ax2.set_title("ошибки против формального эталона", fontsize=10.5)
+    ax2.set_title("errors against the formal ground truth", fontsize=10.5)
     if title:
         fig.suptitle(title, fontsize=11.5)
     fig.tight_layout()
@@ -1007,42 +1007,42 @@ def plot_fpr_calibration(table, title=None):
     does not control the right one.
     """
     fig, axes = plt.subplots(1, 3, figsize=(13.5, 4.0))
-    fams = sorted(table["мишень"].unique())
+    fams = sorted(table["target"].unique())
 
     ax = axes[0]
     for fam in fams:
-        b = table[(table["мишень"] == fam) & (table["задача"] == "relevant")].sort_values("FPR")
-        ax.plot(b["FPR"], b["срабатываний на нулях (вне выборки)"], marker="o",
+        b = table[(table["target"] == fam) & (table["task"] == "relevant")].sort_values("FPR")
+        ax.plot(b["FPR"], b["firing on nulls (out of sample)"], marker="o",
                 color=FAM_COLOUR[fam], label=FAM_LABEL[fam])
     lim = float(table["FPR"].max())
-    ax.plot([0, lim], [0, lim], color="k", ls="--", lw=1, label="номинал")
-    ax.set_xlabel("перцентиль нулей", fontsize=9)
-    ax.set_ylabel("доля срабатываний на нулях,\nизмеренная вне выборки", fontsize=9)
+    ax.plot([0, lim], [0, lim], color="k", ls="--", lw=1, label="nominal")
+    ax.set_xlabel("null percentile", fontsize=9)
+    ax.set_ylabel("firing rate on the nulls,\nmeasured out of sample", fontsize=9)
     ax.grid(alpha=.25); ax.legend(fontsize=8)
-    ax.set_title("порог режет срабатывания на нулях", fontsize=10)
+    ax.set_title("the threshold cuts firing on the nulls", fontsize=10)
 
     ax = axes[1]
     for fam in fams:
-        b = table[(table["мишень"] == fam) & (table["задача"] == "relevant")].sort_values("FPR")
-        ax.plot(b["FPR"], b["доля на цели"], marker="o", color=FAM_COLOUR[fam],
+        b = table[(table["target"] == fam) & (table["task"] == "relevant")].sort_values("FPR")
+        ax.plot(b["FPR"], b["rate on target"], marker="o", color=FAM_COLOUR[fam],
                 label=FAM_LABEL[fam])
-    ax.set_xlabel("перцентиль нулей", fontsize=9)
-    ax.set_ylabel("доля свидетелей на task-relevant цели", fontsize=9)
+    ax.set_xlabel("null percentile", fontsize=9)
+    ax.set_ylabel("witness fraction on the task-relevant target", fontsize=9)
     ax.set_ylim(0.7, 1.02)
     ax.grid(alpha=.25); ax.legend(fontsize=8)
-    ax.set_title("и это стоит чувствительности", fontsize=10)
+    ax.set_title("and this costs sensitivity", fontsize=10)
 
     ax = axes[2]
     for fam in fams:
-        b = table[(table["мишень"] == fam) & (table["задача"] == "irrelevant")].sort_values("FPR")
-        ax.plot(b["FPR"], b["доля на цели"], marker="o", color=FAM_COLOUR[fam],
-                label=f"{FAM_LABEL[fam]}: цель")
-        ax.plot(b["FPR"], b["срабатываний на нулях (вне выборки)"], marker="s", ls="--",
-                color=FAM_COLOUR[fam], alpha=.55, label=f"{FAM_LABEL[fam]}: её нули")
-    ax.set_xlabel("перцентиль нулей", fontsize=9)
-    ax.set_ylabel("доля на task-IRRELEVANT датасете", fontsize=9)
+        b = table[(table["target"] == fam) & (table["task"] == "irrelevant")].sort_values("FPR")
+        ax.plot(b["FPR"], b["rate on target"], marker="o", color=FAM_COLOUR[fam],
+                label=f"{FAM_LABEL[fam]}: target")
+        ax.plot(b["FPR"], b["firing on nulls (out of sample)"], marker="s", ls="--",
+                color=FAM_COLOUR[fam], alpha=.55, label=f"{FAM_LABEL[fam]}: its nulls")
+    ax.set_xlabel("null percentile", fontsize=9)
+    ax.set_ylabel("fraction on the task-IRRELEVANT dataset", fontsize=9)
     ax.grid(alpha=.25); ax.legend(fontsize=7.5)
-    ax.set_title("а вот это порогом не убирается", fontsize=10)
+    ax.set_title("but this is not removed by the threshold", fontsize=10)
     if title:
         fig.suptitle(title, fontsize=11.5)
     fig.tight_layout()
@@ -1060,40 +1060,40 @@ def plot_continuity(test, title=None):
     test = test.copy()
     # survives приходит как object/float (NaN у неопределённых); приводим явно
     test["survives"] = test["survives"].astype(float)
-    classes = list(test.groupby("класс"))
+    classes = list(test.groupby("class"))
     labels = [c for c, _ in classes]
     surv = [float(b["survives"].mean()) for _, b in classes]
     tot = [len(b) for _, b in classes]
-    colours = [CN if "нул" in c else C1 if "нерелевант" in c else CT for c in labels]
+    colours = [CN if "null" in c else C1 if "irrelevant" in c else CT for c in labels]
 
     ax1.bar(range(len(labels)), surv, color=colours)
     for i, (s, n) in enumerate(zip(surv, tot)):
-        ax1.text(i, s + .012, f"{s:.1%}\nиз {n}", ha="center", fontsize=9)
+        ax1.text(i, s + .012, f"{s:.1%}\nof {n}", ha="center", fontsize=9)
     ax1.set_xticks(range(len(labels)))
     ax1.set_xticklabels([l.replace(" ", "\n") for l in labels], fontsize=8.5)
-    ax1.set_ylabel("доля свидетелей, переживших композицию", fontsize=9.5)
+    ax1.set_ylabel("fraction of witnesses that survived the composition", fontsize=9.5)
     ax1.set_ylim(0, min(max(surv + [0.05]) * 1.45, 1.16))
     ax1.grid(alpha=.25, axis="y")
-    ax1.set_title("свидетельство сохранено до головы?", fontsize=10.5)
+    ax1.set_title("is the witness kept up to the head?", fontsize=10.5)
 
     failed = test[test["survives"] == 0.0]
-    broke = (failed.groupby(["класс", "оборвалось на"]).size().unstack(fill_value=0)
+    broke = (failed.groupby(["class", "broke at"]).size().unstack(fill_value=0)
              if len(failed) else None)
     if broke is not None:
         broke = broke.reindex(labels, fill_value=0)
         bottom = np.zeros(len(broke))
         for c, colour in zip(broke.columns,
                              plt.cm.viridis(np.linspace(.15, .9, len(broke.columns)))):
-            lab = f"слой {c}" if str(c).isdigit() else str(c)
+            lab = f"layer {c}" if str(c).isdigit() else str(c)
             ax2.bar(range(len(broke)), broke[c].values, bottom=bottom, color=colour, label=lab)
             bottom += broke[c].values
         ax2.set_xticks(range(len(broke)))
         ax2.set_xticklabels([str(i).replace(" ", "\n") for i in broke.index], fontsize=8.5)
-    ax2.set_ylabel("свидетелей", fontsize=9.5)
+    ax2.set_ylabel("witnesses", fontsize=9.5)
     ax2.grid(alpha=.25, axis="y")
     if broke is not None:
-        ax2.legend(fontsize=8, title="первый слой без свидетеля", title_fontsize=8)
-    ax2.set_title("где обрывается цепочка", fontsize=10.5)
+        ax2.legend(fontsize=8, title="first layer without a witness", title_fontsize=8)
+    ax2.set_title("where the chain breaks", fontsize=10.5)
     if title:
         fig.suptitle(title, fontsize=11.5)
     fig.tight_layout()
@@ -1114,8 +1114,8 @@ def plot_criteria_axes(struct, homo, axes, title=None):
     fig, ax = plt.subplots(2, ncols, figsize=(4.4 * ncols, 7.0), squeeze=False)
     for j, spec in enumerate(axes):
         for row, (table, col, ylab) in enumerate((
-                (struct, "med_target", "структурный скор\n(меньше = лучше)"),
-                (homo, "med_margin", "гомологический margin\n(больше = лучше)"))):
+                (struct, "med_target", "structural score\n(smaller = better)"),
+                (homo, "med_margin", "homological margin\n(larger = better)"))):
             a = ax[row][j]
             for pan in spec["panels"]:
                 block = table
@@ -1151,10 +1151,10 @@ def plot_criteria_scatter(units, title=None):
     witness". The quadrants are therefore the agreement table, drawn.
     """
     fig, ax = plt.subplots(figsize=(9.2, 5.2))
-    styles = {("relevant", "target"): (CT, "релевантная цель", 16),
-              ("relevant", "null"): ("#9ecae1", "нули релевантных", 8),
-              ("irrelevant", "target"): (C0, "нерелевантная цель", 16),
-              ("irrelevant", "null"): (CN, "нули нерелевантных", 8)}
+    styles = {("relevant", "target"): (CT, "relevant target", 16),
+              ("relevant", "null"): ("#9ecae1", "nulls of relevant cells", 8),
+              ("irrelevant", "target"): (C0, "irrelevant target", 16),
+              ("irrelevant", "null"): (CN, "nulls of irrelevant cells", 8)}
     for (task, role), (colour, label, size) in styles.items():
         b = units[(units["task"] == task) & (units["feature_role"] == role)]
         if not len(b):
@@ -1165,11 +1165,11 @@ def plot_criteria_scatter(units, title=None):
     ax.axvline(1.0, color="crimson", ls=":", lw=1.6)
     ax.axhline(0.0, color="0.35", ls="--", lw=1.4)
     ax.set_xscale("log")
-    ax.set_xlabel("скор / порог СВОЕЙ ячейки   (левее 1 — структурный свидетель)", fontsize=9.5)
-    ax.set_ylabel("persistence margin   (выше 0 — гомологический свидетель)", fontsize=9.5)
-    ax.text(0.012, 0.045, "выше пунктира — петля есть", transform=ax.get_yaxis_transform(),
+    ax.set_xlabel("score / threshold of ITS OWN cell   (left of 1 — structural witness)", fontsize=9.5)
+    ax.set_ylabel("persistence margin   (above 0 — homological witness)", fontsize=9.5)
+    ax.text(0.012, 0.045, "above the dashed line — a loop is present", transform=ax.get_yaxis_transform(),
             fontsize=8, color="0.4")
-    ax.text(0.012, -0.25, "  диаграмма пуста (NaN)", transform=ax.get_yaxis_transform(),
+    ax.text(0.012, -0.25, "  diagram is empty (NaN)", transform=ax.get_yaxis_transform(),
             fontsize=8, color="0.45", va="center")
     ax.grid(alpha=.25)
     ax.legend(fontsize=8.5, loc="upper left", bbox_to_anchor=(1.01, 1.0), framealpha=.92)

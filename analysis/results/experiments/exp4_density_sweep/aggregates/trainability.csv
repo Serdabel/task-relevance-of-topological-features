@@ -1,4 +1,4 @@
-cell,task,w,R,rho,T,clearance,ring_density,disk_density,успехов,попыток,доля успеха
+cell,task,w,R,rho,T,clearance,ring_density,disk_density,successes,attempts,success rate
 d4_rel_w10_R050_r025_T1000,relevant,1.0,0.5,0.25,1000,0.5,21.22065907891938,1018.5916357881301,34,50,0.68
 d4_rel_w05_R025_r025_T1000,relevant,0.5,0.25,0.25,1000,1.0,42.44131815783876,4074.3665431525205,36,50,0.72
 d4_rel_w10_R025_r025_T1000,relevant,1.0,0.25,0.25,1000,0.75,21.22065907891938,4074.3665431525205,36,50,0.72
