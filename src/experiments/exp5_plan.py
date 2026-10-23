@@ -98,39 +98,39 @@ def cell_plan() -> list[dict]:
 
     for fa in ASPECTS:                                   # A: shape against shape
         for ia in ASPECTS:
-            plan.append(("A", f"фича {fa}:1, внутр. {ia}:1",
+            plan.append(("A", f"feature {fa}:1, interior {ia}:1",
                          dict(feature_aspect=fa, interior_aspect=ia)))
 
     for fa in ASPECTS:                                   # A-perp: interior across
         for ia in ASPECTS:
             if fa == 1.0 or ia == 1.0:
                 continue      # turning a round object produces no new configuration
-            plan.append(("A⊥", f"фича {fa}:1, внутр. {ia}:1 поперёк",
+            plan.append(("A⊥", f"feature {fa}:1, interior {ia}:1 across",
                          dict(feature_aspect=fa, interior_aspect=ia,
                               interior_rotation=math.pi / 2)))
 
-    geometries = [("вытянута фича", dict(feature_aspect=ELL)),
-                  ("вытянута внутр.", dict(interior_aspect=ELL)),
-                  ("оба, в фазе", dict(feature_aspect=ELL, interior_aspect=ELL)),
-                  ("оба, противофаза", dict(feature_aspect=ELL, interior_aspect=ELL,
-                                            interior_rotation=math.pi / 2))]
+    geometries = [("elongated feature", dict(feature_aspect=ELL)),
+                  ("elongated interior", dict(interior_aspect=ELL)),
+                  ("both, in phase", dict(feature_aspect=ELL, interior_aspect=ELL)),
+                  ("both, in antiphase", dict(feature_aspect=ELL, interior_aspect=ELL,
+                                              interior_rotation=math.pi / 2))]
     for label, geometry in geometries:                   # C: geometry x balance
         for balance in (0.2, 0.5, 0.8):
             n_int = int(round(TOTAL_POINTS * balance))
-            plan.append(("C", f"{label}, баланс {balance:.1f}",
+            plan.append(("C", f"{label}, balance {balance:.1f}",
                          dict(n_feature=TOTAL_POINTS - n_int, n_interior=n_int,
                               **geometry)))
 
-    shapes = {"круг в круге": dict(),
-              "круг в эллипсе": dict(feature_aspect=ELL),
-              "эллипс в круге": dict(interior_aspect=ELL),
-              "эллипс в эллипсе": dict(feature_aspect=ELL, interior_aspect=ELL),
-              "эллипс ⊥ эллипса": dict(feature_aspect=ELL, interior_aspect=ELL,
-                                       interior_rotation=math.pi / 2)}
-    rows = [("круг в круге", "x"), ("круг в эллипсе", "x"), ("круг в эллипсе", "y"),
-            ("эллипс в круге", "x"), ("эллипс в круге", "y"),
-            ("эллипс в эллипсе", "x"), ("эллипс в эллипсе", "y"),
-            ("эллипс ⊥ эллипса", "x"), ("эллипс ⊥ эллипса", "y")]
+    shapes = {"circle in circle": dict(),
+              "circle in ellipse": dict(feature_aspect=ELL),
+              "ellipse in circle": dict(interior_aspect=ELL),
+              "ellipse in ellipse": dict(feature_aspect=ELL, interior_aspect=ELL),
+              "ellipse ⊥ ellipse": dict(feature_aspect=ELL, interior_aspect=ELL,
+                                        interior_rotation=math.pi / 2)}
+    rows = [("circle in circle", "x"), ("circle in ellipse", "x"), ("circle in ellipse", "y"),
+            ("ellipse in circle", "x"), ("ellipse in circle", "y"),
+            ("ellipse in ellipse", "x"), ("ellipse in ellipse", "y"),
+            ("ellipse ⊥ ellipse", "x"), ("ellipse ⊥ ellipse", "y")]
     for shape, axis in rows:                             # D: position x shape
         geometry = shapes[shape]
         top = _max_offset(geometry, axis)

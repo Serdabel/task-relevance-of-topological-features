@@ -437,10 +437,10 @@ def marginal_effect(table: pd.DataFrame, value: str = "curve_aspect") -> pd.Data
     for axis, other in (("interior_aspect", "feature_aspect"),
                         ("feature_aspect", "interior_aspect")):
         m = A.groupby(axis)[value].mean()
-        out.append({"ось": "внутренность" if axis == "interior_aspect" else "фича",
+        out.append({"axis": "interior" if axis == "interior_aspect" else "feature",
                     "1.0": m.get(1.0), "1.5": m.get(1.5), "2.5": m.get(2.5),
-                    "4.0": m.get(4.0), "размах": float(m.max() - m.min()),
-                    "монотонно": bool(m.is_monotonic_increasing or m.is_monotonic_decreasing)})
+                    "4.0": m.get(4.0), "range": float(m.max() - m.min()),
+                    "monotone": bool(m.is_monotonic_increasing or m.is_monotonic_decreasing)})
     return pd.DataFrame(out)
 
 
@@ -554,10 +554,10 @@ def enclosing_curve_at_mid(cell: str, model_index: int = 0, layer_id: int = 3,
 # ----------------------------------------------------------------------
 
 C_GEOMETRIES = [
-    ("g5_f040_i010_s100", "фича 4:1, внутренность круглая"),
-    ("g5_f010_i040_s100", "фича круглая, внутренность 4:1"),
-    ("g5_f040_i040_s100", "оба 4:1, в фазе"),
-    ("g5_f040_i040T_s100", "оба 4:1, поперёк"),
+    ("g5_f040_i010_s100", "feature 4:1, interior round"),
+    ("g5_f010_i040_s100", "feature round, interior 4:1"),
+    ("g5_f040_i040_s100", "both 4:1, in phase"),
+    ("g5_f040_i040T_s100", "both 4:1, across"),
 ]
 
 
@@ -580,13 +580,13 @@ def balance_rows(cells: pd.DataFrame, curves: pd.DataFrame,
             if not len(c):
                 continue
             rows.append({
-                "геометрия": label, "ячейка": name, "баланс": balance,
-                "n_внутр": int(balance * 1000), "n_фичи": int((1 - balance) * 1000),
-                "скор": float(c.target_median.iloc[0]), "пол": float(c.floor.iloc[0]),
-                "доля_св": float(c.rate_floor.iloc[0]),
+                "geometry": label, "cell": name, "balance": balance,
+                "n_interior": int(balance * 1000), "n_feature": int((1 - balance) * 1000),
+                "score": float(c.target_median.iloc[0]), "floor": float(c.floor.iloc[0]),
+                "witness_rate": float(c.rate_floor.iloc[0]),
                 "p_sup": float(c.p_superior.iloc[0]),
-                "a2_кривой": float(v.a2.iloc[0]) if len(v) else np.nan,
-                "аспект_кривой": float(v.curve_aspect.iloc[0]) if len(v) else np.nan,
+                "a2_curve": float(v.a2.iloc[0]) if len(v) else np.nan,
+                "curve_aspect": float(v.curve_aspect.iloc[0]) if len(v) else np.nan,
                 "lam": float(s.lam.iloc[0]) if len(s) else np.nan,
             })
     return pd.DataFrame(rows)
@@ -612,26 +612,26 @@ def position_rows(cells: pd.DataFrame, pos: pd.DataFrame,
         s = shape_mid[shape_mid.dataset_type == name]
         v = curves[curves.dataset_type == name]
         rows.append({
-            "пара": pair, "ось": axis, "доля_сдвига": frac, "ячейка": name,
-            "сдвиг": float(c.offset_norm),
-            "скор": float(c.target_median), "пол": float(c.floor),
-            "доля_св": float(c.rate_floor),
+            "pair": pair, "axis": axis, "offset_fraction": frac, "cell": name,
+            "offset": float(c.offset_norm),
+            "score": float(c.target_median), "floor": float(c.floor),
+            "witness_rate": float(c.rate_floor),
             "lam_pos": float(lam_pos.get(name, np.nan)),
             "lam_shape": float(s.lam.iloc[0]) if len(s) else np.nan,
-            "аспект_кривой": float(v.curve_aspect.iloc[0]) if len(v) else np.nan,
+            "curve_aspect": float(v.curve_aspect.iloc[0]) if len(v) else np.nan,
         })
     out = pd.DataFrame(rows)
     # a zero-offset cell is shared by both axes: it is the same dataset
-    zero = out[out["доля_сдвига"] == 0].copy()
+    zero = out[out["offset_fraction"] == 0].copy()
     extra = []
     for _, r in zero.iterrows():
         for ax in ("x", "y"):
-            if not ((out["пара"] == r["пара"]) & (out["ось"] == ax)
-                    & (out["доля_сдвига"] == 0)).any():
-                e = r.copy(); e["ось"] = ax; extra.append(e)
+            if not ((out["pair"] == r["pair"]) & (out["axis"] == ax)
+                    & (out["offset_fraction"] == 0)).any():
+                e = r.copy(); e["axis"] = ax; extra.append(e)
     if extra:
         out = pd.concat([out, pd.DataFrame(extra)], ignore_index=True)
-    return out.sort_values(["пара", "ось", "доля_сдвига"]).reset_index(drop=True)
+    return out.sort_values(["pair", "axis", "offset_fraction"]).reset_index(drop=True)
 
 
 # ----------------------------------------------------------------------

@@ -179,7 +179,7 @@ def build(cells=None, n_models: int = 50, layers=LAYERS, ladders=LADDERS,
             rows.extend(part)
             done += 1
             if progress and done % 50 == 0:
-                print(f"  {done}/{len(tasks)} моделей, строк {len(rows)}",
+                print(f"  {done}/{len(tasks)} models, rows {len(rows)}",
                       flush=True)
 
     table = pd.DataFrame(rows)

@@ -148,9 +148,9 @@ def draw_cell(ax, cell: str, title: str | None = None, nulls: bool = False,
 
     X, y, A, _ = dataset_points(cell)
     ax.scatter(X[y == 1, 0], X[y == 1, 1], s=point_size, c=C_INTERIOR,
-               label="внутренность (класс 1)", zorder=2)
+               label="interior (class 1)", zorder=2)
     ax.scatter(A[:, 0], A[:, 1], s=point_size, c=C_FEATURE,
-               label="фича (класс 0)", zorder=3)
+               label="feature (class 0)", zorder=3)
 
     if nulls:
         plan = {c["name"]: c for c in derived_plan()}
@@ -159,7 +159,7 @@ def draw_cell(ax, cell: str, title: str | None = None, nulls: bool = False,
                for dx, dy, rot, nm in plan[cell]["placements"]]
         for i, (name, pts) in enumerate(build_null_features(A, pls).items()):
             ax.scatter(pts[:, 0], pts[:, 1], s=point_size, c=C_NULL, zorder=1,
-                       label="нулевые размещения" if i == 0 else None)
+                       label="null placements" if i == 0 else None)
 
     ax.set_aspect("equal")
     if half is not None:
@@ -193,9 +193,9 @@ def plot_cell_gallery(names, titles=None, ncols: int = 4, nulls: bool = False,
         fig.suptitle(suptitle, fontsize=12, y=1.0)
     fig.tight_layout()
     handles = [plt.Line2D([], [], marker="o", ls="", color=c, ms=7, label=l)
-               for c, l in [(C_FEATURE, "фича (класс 0)"),
-                            (C_INTERIOR, "внутренность (класс 1)")]
-               + ([(C_NULL, "нулевые размещения")] if nulls else [])]
+               for c, l in [(C_FEATURE, "feature (class 0)"),
+                            (C_INTERIOR, "interior (class 1)")]
+               + ([(C_NULL, "null placements")] if nulls else [])]
     fig.legend(handles=handles, loc="lower center", ncol=3, fontsize=9,
                frameon=False, bbox_to_anchor=(0.5, -0.02))
     return fig
@@ -216,7 +216,7 @@ def plot_grid_heatmap(table: pd.DataFrame, value: str, title: str,
     im = ax.imshow(piv.values, cmap=cmap, vmin=vmin, vmax=vmax, aspect="auto")
     ax.set_xticks(range(len(piv.columns)), [f"{c:g}:1" for c in piv.columns])
     ax.set_yticks(range(len(piv.index)), [f"{r:g}:1" for r in piv.index])
-    ax.set_xlabel("аспект ВНУТРЕННОСТИ"); ax.set_ylabel("аспект ФИЧИ")
+    ax.set_xlabel("aspect of the INTERIOR"); ax.set_ylabel("aspect of the FEATURE")
     for i in range(piv.shape[0]):
         for j in range(piv.shape[1]):
             v = piv.values[i, j]
@@ -250,18 +250,18 @@ def plot_score_panels(best: pd.DataFrame, names, titles, floors, ncols: int = 4,
         tgt = g[g.feature_role == "target"]["score"]
         nul = g[g.feature_role != "target"]["score"]
         ax.hist(nul, bins=bins, color=C_NULL, alpha=0.75, density=True,
-                label="нули ячейки")
+                label="the cell's nulls")
         ax.hist(tgt, bins=bins, color=C_FEATURE, alpha=0.75, density=True,
-                label="мишень")
+                label="target")
         f = floors.get(name, np.nan)
-        ax.axvline(f, color=C_CURVE, ls="--", lw=1.4, label="пол ячейки")
+        ax.axvline(f, color=C_CURVE, ls="--", lw=1.4, label="the cell's floor")
         rate = float((tgt < f).mean())
-        ax.set_title(f"{title}\nдоля свидетелей {rate:.2f}", fontsize=9)
+        ax.set_title(f"{title}\nwitness fraction {rate:.2f}", fontsize=9)
         ax.set_yticks([])
     for ax in axes[len(names):]:
         ax.axis("off")
     axes[0].legend(fontsize=7)
-    fig.supxlabel("скор лучшего нейрона модели (Чамфер / диаметр)", fontsize=10)
+    fig.supxlabel("best-neuron score of the model (Chamfer / diameter)", fontsize=10)
     if suptitle:
         fig.suptitle(suptitle, fontsize=12, y=1.0)
     fig.tight_layout()
@@ -295,16 +295,16 @@ def plot_margin_panels(table: pd.DataFrame, names, titles, ncols: int = 4,
         tgt = g[g.feature_role == "target"][value].dropna()
         nul = g[g.feature_role != "target"][value].dropna()
         ax.hist(nul, bins=bins, color=C_NULL, alpha=0.75, density=True,
-                label="нули ячейки")
+                label="the cell's nulls")
         ax.hist(tgt, bins=bins, color=C_GOOD, alpha=0.75, density=True,
-                label="мишень")
+                label="target")
         over = float((tgt.values[:, None] > nul.values[None, :]).mean()) if len(nul) else np.nan
-        ax.set_title(f"{title}\nP(мишень > нуля) = {over:.2f}", fontsize=9)
+        ax.set_title(f"{title}\nP(target > null) = {over:.2f}", fontsize=9)
         ax.set_yticks([])
     for ax in axes[len(names):]:
         ax.axis("off")
     axes[0].legend(fontsize=7)
-    fig.supxlabel("запас гомологического критерия у лучшего нейрона модели", fontsize=10)
+    fig.supxlabel("homological margin of the model's best neuron", fontsize=10)
     if suptitle:
         fig.suptitle(suptitle, fontsize=12, y=1.0)
     fig.tight_layout()
@@ -319,15 +319,15 @@ def plot_floor_bars(cells: pd.DataFrame):
     ax.bar(range(len(c)), c["floor"], color=[colors[b] for b in c["block"]])
     if "floor_p5" in c:
         ax.plot(range(len(c)), c["floor_p5"], ".", color="#444", ms=4,
-                label="тот же пол по 5-му перцентилю")
+                label="the same floor at the 5th percentile")
     ax.axhline(0.1, color=C_CURVE, ls="--", lw=1.4,
-               label="tau = 0.1, порог экспериментов 1 и 2")
-    ax.set_xticks([]); ax.set_ylabel("пол ячейки\n(1-й перцентиль своих нулей)")
-    ax.set_xlabel("56 ячеек, отсортированы по полу")
+               label="tau = 0.1, the threshold of experiments 1 and 2")
+    ax.set_xticks([]); ax.set_ylabel("the cell's floor\n(1st percentile of its own nulls)")
+    ax.set_xlabel("56 cells, sorted by floor")
     handles = [plt.Rectangle((0, 0), 1, 1, color=colors[b]) for b in colors]
     ax.legend(handles + [ax.lines[0]], list(colors) + ["tau = 0.1"], ncol=5, fontsize=9)
-    ax.set_title(f"Пол меняется в {c['floor'].max()/c['floor'].min():.1f} раза между ячейками — "
-                 "поэтому порог берётся в каждой ячейке свой", fontsize=11)
+    ax.set_title(f"The floor varies {c['floor'].max()/c['floor'].min():.1f}-fold between cells — "
+                 "so every cell takes its own threshold", fontsize=11)
     fig.tight_layout()
     return fig
 
@@ -352,12 +352,12 @@ def plot_shape_scale():
         desc[a] = fourier_descriptor(pts)
         axes[0].plot(pts[:, 0], pts[:, 1], label=f"{a:g}:1")
     axes[0].set_aspect("equal"); axes[0].legend(fontsize=8)
-    axes[0].set_title("эталонные формы\n(малая полуось закреплена)", fontsize=10)
+    axes[0].set_title("reference shapes\n(minor semi-axis fixed)", fontsize=10)
     axes[0].set_xticks([]); axes[0].set_yticks([])
 
     axes[1].bar([f"{a:g}:1" for a in aspects],
                 [desc[a]["amplitude"][2] for a in aspects], color=C_FEATURE)
-    axes[1].set_title("вторая гармоника a2 —\nмера вытянутости", fontsize=10)
+    axes[1].set_title("second harmonic a2 —\na measure of elongation", fontsize=10)
     axes[1].set_ylabel("a2")
 
     M = np.array([[shape_distance(desc[a], desc[b]) for b in aspects] for a in aspects])
@@ -368,8 +368,8 @@ def plot_shape_scale():
         for j in range(4):
             axes[2].text(j, i, f"{M[i, j]:.2f}", ha="center", va="center",
                          color="white" if M[i, j] < 0.35 else "black", fontsize=10)
-    axes[2].set_title("расстояние формы между эталонами\n"
-                      "(наименьшее различимое: 0.144)", fontsize=10)
+    axes[2].set_title("shape distance between the references\n"
+                      "(smallest to be resolved: 0.144)", fontsize=10)
     fig.colorbar(im, ax=axes[2])
     fig.tight_layout()
     return fig
@@ -388,26 +388,26 @@ def plot_elongation_grid(curves: pd.DataFrame, block: str = "A"):
     im = axes[0].imshow(piv.values, cmap="magma_r", vmin=1.0, vmax=4.0, aspect="auto")
     axes[0].set_xticks(range(len(piv.columns)), [f"{c:g}:1" for c in piv.columns])
     axes[0].set_yticks(range(len(piv.index)), [f"{r:g}:1" for r in piv.index])
-    axes[0].set_xlabel("аспект ВНУТРЕННОСТИ"); axes[0].set_ylabel("аспект ФИЧИ")
+    axes[0].set_xlabel("aspect of the INTERIOR"); axes[0].set_ylabel("aspect of the FEATURE")
     for i in range(piv.shape[0]):
         for j in range(piv.shape[1]):
             axes[0].text(j, i, f"{piv.values[i, j]:.2f}", ha="center", va="center",
                          fontsize=11, color="black")
-    axes[0].set_title("аспект самой ЛИНИИ УРОВНЯ\n(шкала та же, что у объектов: 1…4)",
+    axes[0].set_title("aspect of the LEVEL CURVE itself\n(the same scale as the objects: 1…4)",
                       fontsize=10)
-    cb = fig.colorbar(im, ax=axes[0]); cb.set_label("аспект кривой")
+    cb = fig.colorbar(im, ax=axes[0]); cb.set_label("curve aspect")
 
-    for axis, color, lab in (("interior_aspect", C_INTERIOR, "аспект ВНУТРЕННОСТИ"),
-                             ("feature_aspect", C_FEATURE, "аспект ФИЧИ")):
+    for axis, color, lab in (("interior_aspect", C_INTERIOR, "aspect of the INTERIOR"),
+                             ("feature_aspect", C_FEATURE, "aspect of the FEATURE")):
         m = A.groupby(axis)["curve_aspect"].mean()
         axes[1].plot(m.index, m.values, "o-", color=color, lw=2.2, ms=8,
-                     label=f"{lab} (размах {m.max()-m.min():.2f})")
+                     label=f"{lab} (range {m.max()-m.min():.2f})")
     axes[1].plot([1, 4], [1, 4], ls=":", color="k", lw=1.2,
-                 label="если бы кривая повторяла объект")
-    axes[1].set_xlabel("аспект объекта"); axes[1].set_ylabel("аспект линии уровня")
+                 label="if the curve copied the object")
+    axes[1].set_xlabel("aspect of the object"); axes[1].set_ylabel("aspect of the level curve")
     axes[1].set_ylim(0.9, 4.2); axes[1].legend(fontsize=9)
-    axes[1].set_title("кривая идёт за внутренностью, а не за фичей —\n"
-                      "и не доходит ни до одной", fontsize=10)
+    axes[1].set_title("the curve follows the interior, not the feature —\n"
+                      "and reaches neither", fontsize=10)
     fig.tight_layout()
     return fig
 
@@ -419,26 +419,26 @@ def plot_elongation_grid(curves: pd.DataFrame, block: str = "A"):
 def plot_phase_pairs(pairs: pd.DataFrame):
     """Nine pairs that share their feature and differ only in the interior's
     orientation: what the rotation does to witnessing and to the curve's shape."""
-    labels = [f"ф {r.feature_aspect:g}:1\nвн {r.interior_aspect:g}:1"
+    labels = [f"f {r.feature_aspect:g}:1\ni {r.interior_aspect:g}:1"
               for r in pairs.itertuples()]
     x = np.arange(len(pairs))
     fig, axes = plt.subplots(1, 2, figsize=(13.5, 4.4))
 
-    axes[0].bar(x - 0.2, pairs.rate_phase, 0.4, color=C_GOOD, label="в фазе")
-    axes[0].bar(x + 0.2, pairs.rate_cross, 0.4, color=C_BAD, label="поперёк")
-    axes[0].axhline(0.05, ls="--", color="k", lw=1.2, label="уровень случайности (0.05)")
+    axes[0].bar(x - 0.2, pairs.rate_phase, 0.4, color=C_GOOD, label="in phase")
+    axes[0].bar(x + 0.2, pairs.rate_cross, 0.4, color=C_BAD, label="across")
+    axes[0].axhline(0.05, ls="--", color="k", lw=1.2, label="chance level (0.05)")
     axes[0].set_xticks(x, labels, fontsize=8)
-    axes[0].set_ylabel("доля моделей со свидетелем")
-    axes[0].set_title("поворот ВНУТРЕННОСТИ на 90° — фича не тронута", fontsize=11)
+    axes[0].set_ylabel("fraction of models with a witness")
+    axes[0].set_title("the INTERIOR turned by 90° — the feature untouched", fontsize=11)
     axes[0].legend(fontsize=9)
 
-    axes[1].bar(x - 0.2, pairs.lam_phase, 0.4, color=C_GOOD, label="в фазе")
-    axes[1].bar(x + 0.2, pairs.lam_cross, 0.4, color=C_BAD, label="поперёк")
+    axes[1].bar(x - 0.2, pairs.lam_phase, 0.4, color=C_GOOD, label="in phase")
+    axes[1].bar(x + 0.2, pairs.lam_cross, 0.4, color=C_BAD, label="across")
     axes[1].axhline(0.5, ls="--", color="k", lw=1.2)
     axes[1].set_xticks(x, labels, fontsize=8)
-    axes[1].set_ylabel("lam:  0 = форма фичи,  1 = форма внутренности")
+    axes[1].set_ylabel("lam:  0 = shape of the feature,  1 = shape of the interior")
     axes[1].set_ylim(0, 1)
-    axes[1].set_title("чью форму несёт кривая", fontsize=11)
+    axes[1].set_title("whose shape the curve carries", fontsize=11)
     axes[1].legend(fontsize=9)
     fig.tight_layout()
     return fig
@@ -451,21 +451,21 @@ def plot_phase_pairs(pairs: pd.DataFrame):
 def plot_balance(rows: pd.DataFrame):
     """Block C: the same four geometries at three class balances."""
     fig, axes = plt.subplots(1, 3, figsize=(14, 4.2))
-    for geom, g in rows.groupby("геометрия", sort=False):
+    for geom, g in rows.groupby("geometry", sort=False):
         for ax, col, lab in zip(axes,
-                                ["доля_св", "скор", "a2_кривой"],
-                                ["доля моделей со свидетелем",
-                                 "медиана скора лучшего нейрона",
-                                 "вытянутость кривой a2"]):
-            ax.plot(g["баланс"], g[col], "o-", lw=2, ms=7, label=geom)
-            ax.set_xlabel("доля точек во внутренности")
+                                ["witness_rate", "score", "a2_curve"],
+                                ["fraction of models with a witness",
+                                 "median best-neuron score",
+                                 "elongation of the curve, a2"]):
+            ax.plot(g["balance"], g[col], "o-", lw=2, ms=7, label=geom)
+            ax.set_xlabel("fraction of the points in the interior")
             ax.set_ylabel(lab)
     axes[0].axhline(0.05, ls="--", color="k", lw=1.2)
-    axes[0].set_title("свидетельство", fontsize=11)
-    axes[1].set_title("скор", fontsize=11)
-    axes[2].set_title("форма кривой", fontsize=11)
+    axes[0].set_title("witnessing", fontsize=11)
+    axes[1].set_title("score", fontsize=11)
+    axes[2].set_title("shape of the curve", fontsize=11)
     axes[2].legend(fontsize=8, loc="upper left", framealpha=0.85)
-    fig.suptitle("Баланс классов меняется вчетверо; геометрия держит результат",
+    fig.suptitle("The class balance changes fourfold; the geometry holds the result",
                  fontsize=12, y=1.02)
     fig.tight_layout()
     return fig
@@ -479,20 +479,20 @@ def plot_position(rows: pd.DataFrame):
     own pair of panels: where the curve sits (top) and whether the feature is
     witnessed at all (bottom).
     """
-    pairs = list(dict.fromkeys(rows["пара"]))
+    pairs = list(dict.fromkeys(rows["pair"]))
     fig, axes = plt.subplots(2, len(pairs), figsize=(2.9 * len(pairs), 6.6),
                              sharey="row", squeeze=False)
     for k, pair in enumerate(pairs):
-        g = rows[rows["пара"] == pair]
-        for r, (col, ref) in enumerate((("lam_pos", None), ("доля_св", 0.05))):
+        g = rows[rows["pair"] == pair]
+        for r, (col, ref) in enumerate((("lam_pos", None), ("witness_rate", 0.05))):
             ax = axes[r][k]
             for axis, color, mk in (("x", C_FEATURE, "o"), ("y", C_INTERIOR, "s")):
-                gg = g[g["ось"] == axis].sort_values("доля_сдвига")
+                gg = g[g["axis"] == axis].sort_values("offset_fraction")
                 if col == "lam_pos":
-                    gg = gg[gg["доля_сдвига"] > 0]
+                    gg = gg[gg["offset_fraction"] > 0]
                 if len(gg) >= 1:
-                    ax.plot(gg["доля_сдвига"], gg[col], "-", marker=mk, color=color,
-                            lw=2.2, ms=8, label=f"сдвиг по {axis}")
+                    ax.plot(gg["offset_fraction"], gg[col], "-", marker=mk, color=color,
+                            lw=2.2, ms=8, label=f"offset along {axis}")
             if col == "lam_pos":
                 ax.axhline(1.0, ls=":", color=C_INTERIOR, lw=1.6)
                 ax.axhline(0.0, ls=":", color=C_FEATURE, lw=1.6)
@@ -501,16 +501,16 @@ def plot_position(rows: pd.DataFrame):
             else:
                 ax.axhline(ref, ls="--", color="k", lw=1.2)
                 ax.set_ylim(-0.05, 1.0)
-                ax.set_xlabel("доля предельного сдвига", fontsize=9)
+                ax.set_xlabel("fraction of the largest offset", fontsize=9)
             ax.set_xticks([0.0, 0.5, 1.0])
-    axes[0][0].set_ylabel("lam_pos\n0 = центр фичи,  1 = центр внутренности", fontsize=9)
-    axes[1][0].set_ylabel("доля моделей со свидетелем", fontsize=9)
-    fig.suptitle("Блок D: за чем идёт кривая при сдвиге внутренности — "
-                 "по семьям пар и по осям", fontsize=12, y=1.0)
+    axes[0][0].set_ylabel("lam_pos\n0 = centre of the feature,  1 = centre of the interior", fontsize=9)
+    axes[1][0].set_ylabel("fraction of models with a witness", fontsize=9)
+    fig.suptitle("Block D: what the curve follows when the interior is displaced — "
+                 "by family of pairs and by axis", fontsize=12, y=1.0)
     fig.tight_layout()
     handles = [plt.Line2D([], [], marker=m, color=c, lw=2.2, ms=8, label=l)
-               for m, c, l in (("o", C_FEATURE, "сдвиг по x"),
-                               ("s", C_INTERIOR, "сдвиг по y"))]
+               for m, c, l in (("o", C_FEATURE, "offset along x"),
+                               ("s", C_INTERIOR, "offset along y"))]
     fig.legend(handles=handles, loc="lower center", ncol=2, fontsize=9,
                frameon=False, bbox_to_anchor=(0.5, -0.03))
     return fig
@@ -534,7 +534,7 @@ def plot_level_curve(cells, titles=None, best=None, ncols: int = 3,
 
     cells = list(cells)
     titles = list(titles) if titles is not None else cells
-    which_label = "типичная модель" if which == "median" else "лучшая из 50"
+    which_label = "typical model" if which == "median" else "best of 50"
 
     drawn = []
     for cell in cells:
@@ -571,7 +571,7 @@ def plot_level_curve(cells, titles=None, best=None, ncols: int = 3,
     for ax, title, (cell, n, curve), half in zip(axes, titles, drawn, halves):
         draw_cell(ax, cell, title, half=half)
         if n is not None:
-            ax.set_title(f"{title}\n{which_label}, скор {n['score']:.3f}", fontsize=9)
+            ax.set_title(f"{title}\n{which_label}, score {n['score']:.3f}", fontsize=9)
         if curve is not None:
             closed = np.vstack([curve.numpy(), curve.numpy()[:1]])
             ax.plot(closed[:, 0], closed[:, 1], color=C_CURVE, lw=2.4, zorder=5)
@@ -581,10 +581,10 @@ def plot_level_curve(cells, titles=None, best=None, ncols: int = 3,
         fig.suptitle(suptitle, fontsize=12, y=1.0)
     fig.tight_layout()
     handles = [plt.Line2D([], [], marker="o", ls="", color=C_FEATURE, ms=7,
-                          label="фича (класс 0)"),
+                          label="feature (class 0)"),
                plt.Line2D([], [], marker="o", ls="", color=C_INTERIOR, ms=7,
-                          label="внутренность (класс 1)"),
-               plt.Line2D([], [], color=C_CURVE, lw=2.4, label="линия уровня нейрона")]
+                          label="interior (class 1)"),
+               plt.Line2D([], [], color=C_CURVE, lw=2.4, label="the neuron's level curve")]
     fig.legend(handles=handles, loc="lower center", ncol=3, fontsize=9, frameon=False,
                bbox_to_anchor=(0.5, -0.03))
     return fig
@@ -602,12 +602,12 @@ def plot_summary(cells: pd.DataFrame, shape_mid: pd.DataFrame):
                         label=blk, alpha=0.85, edgecolor="white")
         axes[1].scatter(g.feature_aspect, g.rate_floor, s=52, color=colors[blk],
                         label=blk, alpha=0.85, edgecolor="white")
-    for ax, xl in zip(axes, ["расстояние ФОРМЫ между фичей и внутренностью",
-                             "аспект ФИЧИ"]):
-        ax.axhline(0.05, ls="--", color="k", lw=1.2, label="уровень случайности")
-        ax.set_xlabel(xl); ax.set_ylabel("доля моделей со свидетелем")
+    for ax, xl in zip(axes, ["SHAPE distance between the feature and the interior",
+                             "aspect of the FEATURE"]):
+        ax.axhline(0.05, ls="--", color="k", lw=1.2, label="chance level")
+        ax.set_xlabel(xl); ax.set_ylabel("fraction of models with a witness")
     axes[0].legend(fontsize=9)
-    axes[0].set_title("различие форм само по себе не решает:\nпри нулевом различии есть и 1.00, и 0.04", fontsize=11)
-    axes[1].set_title("вытянутость фичи решает:\nпри 4:1 всё лежит на полу", fontsize=11)
+    axes[0].set_title("a difference in shape does not decide by itself:\nat zero difference there are both 1.00 and 0.04", fontsize=11)
+    axes[1].set_title("the elongation of the feature decides:\nat 4:1 everything lies on the floor", fontsize=11)
     fig.tight_layout()
     return fig
